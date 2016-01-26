@@ -3,12 +3,31 @@
 </head>
 
 <body>
-  <h1>Welcome to Meteor!</h1>
+  <h1>Who's cookin'?</h1>
+  
+  <ol class=rehearsalList>
+    {{#each rehearsals}}
+      {{> rehearsal}}
+    {{/each}}
+  </ol>
 
-  {{> hello}}
+  <ol class=cookList>
+    {{#each cooks}}
+      {{> cook}}
+    {{/each}}
+  </ol>
+
+ 
+
+
+
 </body>
 
-<template name="hello">
-  <button>Click Me</button>
-  <p>You've pressed the button {{counter}} times.</p>
+
+<template name="rehearsal">
+  <li>{{start.dateTime}}</li>
+</template>
+
+<template name="cook">
+  <li>{{name}}</li>
 </template>
