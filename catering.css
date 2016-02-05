@@ -1,6 +1,6 @@
 body {
   background: #ffffff url("cubes.jpg") fixed;
-  background: false;
+  background-size: 500px;
 }
 
 .square-card.mdl-card {
