@@ -1,33 +1,25 @@
 <head>
   <title>catering</title>
+  
 </head>
 
 <body>
   <h1>Who's cookin'?</h1>
   
-  <ol class=rehearsalList>
+  <div class="mdl-grid">
     {{#each rehearsals}}
       {{> rehearsal}}
     {{/each}}
-  </ol>
+  </div>
 
-  <ol class=cookList>
+  <div class="mdl-grid">
     {{#each cooks}}
       {{> cook}}
     {{/each}}
-  </ol>
+  </div>
 
  
 
 
 
 </body>
-
-
-<template name="rehearsal">
-  <li>{{start.dateTime}}</li>
-</template>
-
-<template name="cook">
-  <li>{{name}}</li>
-</template>
