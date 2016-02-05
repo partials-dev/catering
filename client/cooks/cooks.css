@@ -1,0 +1,32 @@
+.user {
+  position: absolute;
+  display: block;
+  right: 10px;
+  top: 10px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+
+.thomas {
+  background-image: URL("thomas.jpg");
+}
+
+.ian {
+  background-image: URL("ian.jpg");
+}
+
+.jeff {
+  background-image: URL("jeff.jpg");
+}
+
+.adriana {
+  background-image: URL("adriana.jpg");
+}
+
+.dane{
+  background-image: URL("dane.jpg");
+}

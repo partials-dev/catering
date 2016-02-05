@@ -4,12 +4,15 @@ Template.body.helpers({
   }
 });
 
-var formatDate = function(rehearsal) {
-  var startTime = moment(rehearsal.start.dateTime).format('ddd MMM Do'); 
-  return {startTime: startTime};
+var formatDate = function(rehearsal, index) {
+  var start = moment(rehearsal.start.dateTime);
+  var date = start.format('MMM Do'); 
+  var weekDay = start.format('dddd');
+  console.log(JSON.stringify(start));
+  return {date: date, weekDay: weekDay, index: index};
 };
 
-var compareStartTime = function(a, b) {
+var compareStartTime = function(a, b) { //sorts calendar events by date
   var isBefore =  moment(a.start.dateTime).isBefore(b.start.dateTime);
   
   if (isBefore)

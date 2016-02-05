@@ -1,3 +1,10 @@
 <template name="cook">
-  <li>{{name}}</li>
+  
+<div id="{{getName index}}" class="user {{getName index}}">
+  </div>
+
+  <div class="mdl-tooltip" for="{{getName index}}">
+    {{getName index}}
+  </div>
+ 
 </template>

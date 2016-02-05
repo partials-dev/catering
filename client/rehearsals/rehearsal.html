@@ -1,16 +1,14 @@
 <template name="rehearsal">
-  <div class="mdl-card mdl-shadow--2dp mdl-cell">
+  <div class="mdl-card mdl-shadow--2dp mdl-cell square-card">
     
     <div class="mdl-card__title">
-      <h2 class="mdl-card__title-text">Rehearsal</h2>
+      <h2 class="mdl-card__title-text">{{weekDay}}</h2>
+      <span class="mdl-card__subtitle-text">{{date}}</span>
+      {{> cook}}
     </div>
     
-    <div class="mdl-card__media">
-      
-    </div>
     
     <div class="mdl-card__supporting-text">
-      {{startTime}}
     </div>
   
   </div>
