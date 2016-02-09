@@ -30,3 +30,15 @@
 .dane{
   background-image: URL("dane.jpg");
 }
+
+.catering-swap {
+  position: absolute;
+  display: block;
+  right: 10px;
+  bottom: 10px;
+}
+
+.material-icons.md-18 { font-size: 18px !important; }
+.material-icons.md-24 { font-size: 24px !important; }
+.material-icons.md-36 { font-size: 36px !important; }
+.material-icons.md-48 { font-size: 36px !important; }

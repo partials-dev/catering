@@ -1,15 +1,18 @@
 <template name="rehearsal">
-  <div class="mdl-card mdl-shadow--2dp mdl-cell square-card">
-    
-    <div class="mdl-card__title">
-      <h2 class="mdl-card__title-text">{{weekDay}}</h2>
-      <span class="mdl-card__subtitle-text">{{date}}</span>
-      {{> cook}}
-    </div>
-    
-    
-    <div class="mdl-card__supporting-text">
-    </div>
-  
+<div class="mdl-card mdl-shadow--2dp mdl-cell square-card">
+
+  <div class="mdl-card__title">
+    <h2 class="mdl-card__title-text">{{weekDay}}</h2>
+    <span id="date" class="mdl-card__subtitle-text">{{date}}</span>
+    {{> cook}}
   </div>
+  <div class="mdl-card__actions mdl-card--border">
+    <label class="mdl-icon-toggle mdl-js-icon-toggle mdl-js-ripple-effect" for="toggle-{{index}}">
+      <input type="checkbox" id="toggle-{{index}}" class="mdl-icon-toggle__input">
+      <i class="mdl-icon-toggle__label material-icons md-36" onclick="console.log('button clicked');">compare_arrows</i>
+    </label>
+  </div>
+
+
+</div>
 </template>
