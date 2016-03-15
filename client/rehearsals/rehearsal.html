@@ -7,15 +7,12 @@
     {{> cook cookData}}
   </div>
   <div class="mdl-card__actions mdl-card--border">
-    <label class="mdl-icon-toggle mdl-js-icon-toggle mdl-js-ripple-effect" for="toggle-{{index}}">
-      <input type="checkbox" id="toggle-{{index}}" class="mdl-icon-toggle__input swap-button">
-      <i class="mdl-icon-toggle__label material-icons md-36">compare_arrows</i>
-    </label>
-
-
+    <button id="swap-button-{{index}}" class="swap-button mdl-button mdl-js-button mdl-button--fab {{getSelectedClass index}}">
+      <i class="material-icons">compare_arrows</i>
+    </button>
+    <button id="delete-rehearsal-{{index}}" class="delete-rehearsal-button mdl-button mdl-js-button mdl-button--fab">
+      <i class="material-icons">delete</i>
+    </button>
   </div>
-
-
-
 </div>
 </template>

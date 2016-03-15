@@ -1,13 +1,12 @@
 body {
   background: #ffffff url("cubes.jpg") fixed;
-  background-size: 500px;
+  background-size: 2000px;
 }
 
 .square-card.mdl-card {
   width: 250px;
   height: 250px;
 }
-
 
 #catering .mdl-card__title {
   flex-direction: column;
@@ -19,6 +18,11 @@ body {
 #catering .mdl-card__title-text {
   align-self: auto;
   webkit-align-self: auto;
-  
+}
+#add-button {
+  margin-top: 97px;
 }
 
+#add-button-container {
+  text-align: center;
+}
