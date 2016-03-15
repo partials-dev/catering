@@ -83,16 +83,16 @@ Template.rehearsal.helpers({
 });
 
 var previouslyChecked = null;
-//Template.rehearsal.events({
-  //"click .swap-button": function(event, template) {
-    //if (previouslyChecked) {
-      //Session.set("swap-button-selected-" + previouslyChecked.index, false)
-      //swap(this.index, previouslyChecked.index);
-      //previouslyChecked = null;
-    //} else {
-      //previouslyChecked = this;
-      //Session.set("swap-button-selected-" + this.index, true)
-    //}
-  //}
-//});
+Template.rehearsal.events({
+  "click .swap-button": function(event, template) {
+    if (previouslyChecked) {
+      Session.set("swap-button-selected-" + previouslyChecked.index, false)
+      swap(this.index, previouslyChecked.index);
+      previouslyChecked = null;
+    } else {
+      previouslyChecked = this;
+      Session.set("swap-button-selected-" + this.index, true)
+    }
+  }
+});
 
