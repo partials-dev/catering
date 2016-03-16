@@ -70,7 +70,7 @@ Template.rehearsal.helpers({
     var cooks = Session.get('cooks');
     var index = this.index;
     var name = cooks[index];
-    var cookData = {name: name, index: this.index};
+    var cookData = {name: name, index: this.index, className: 'card-bubble'};
     return cookData;
   },
   getSelectedClass: function(index) {

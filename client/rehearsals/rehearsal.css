@@ -1,0 +1,6 @@
+.card-bubble {
+  position: absolute;
+  display: block;
+  right: 10px;
+  top: 10px;
+}
