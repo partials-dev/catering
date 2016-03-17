@@ -4,3 +4,10 @@
   right: 10px;
   top: 10px;
 }
+
+#catering .mdl-card {
+  overflow: visible;
+}
+
+#catering .mdl-menu {
+}

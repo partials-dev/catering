@@ -6,13 +6,34 @@
     <span id="date" class="mdl-card__subtitle-text">{{date}}</span>
     {{> cook cookData}}
   </div>
+
+  <!--Card Actions-->
   <div class="mdl-card__actions mdl-card--border">
+
     <button id="swap-button-{{index}}" class="swap-button mdl-button mdl-js-button mdl-button--fab {{getSelectedClass index}}">
       <i class="material-icons">compare_arrows</i>
     </button>
-    <button id="delete-rehearsal-{{index}}" class="delete-rehearsal-button mdl-button mdl-js-button mdl-button--fab">
+
+    <button id="delete-cook-{{index}}" class="delete-cook-button mdl-button mdl-js-button mdl-button--fab">
       <i class="material-icons">delete</i>
     </button>
+
+    <button id="set-cook-{{index}}" class="set-cook-button mdl-button mdl-js-button mdl-button--fab">
+      <i class="material-icons">face</i>
+    </button>
+    <ul class="mdl-menu mdl-js-menu" for="set-cook-{{index}}">
+      {{#each cannonicalCooks}}
+        <li class="mdl-menu__item">{{name}}</li>
+      {{/each}}
+    </ul>
+
+    <button id="add-cook-{{index}}" class="add-cook-button mdl-button mdl-js-button mdl-button--fab">
+      <i class="material-icons">add</i>
+    </button>
+
   </div>
+  <!--/Card Actions-->
+
 </div>
+
 </template>

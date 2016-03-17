@@ -7,23 +7,23 @@
   background-size: cover;
 }
 
-.thomas {
+[data-name="thomas"] {
   background-image: URL("thomas.jpg");
 }
 
-.ian {
+[data-name="ian"] {
   background-image: URL("ian.jpg");
 }
 
-.jeff {
+[data-name="jeff"] {
   background-image: URL("jeff.jpg");
 }
 
-.adriana {
+[data-name="adriana"] {
   background-image: URL("adriana.jpg");
 }
 
-.dane{
+[data-name="dane"] {
   background-image: URL("dane.jpg");
 }
 

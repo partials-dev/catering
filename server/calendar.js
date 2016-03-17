@@ -37,6 +37,7 @@ function gotRehearsals(err, results) {
     console.log("Error retrieving calendar events: ", err);
   }
   results.items.forEach(insertRehearsal);
+  //results.items.forEach(function (item){console.log(item.start)});
 }
 
 Rehearsals.remove({});
