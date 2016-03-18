@@ -23,14 +23,19 @@
     </button>
     <ul class="mdl-menu mdl-js-menu" for="set-cook-{{index}}">
       {{#each cannonicalCooks}}
-        <li class="mdl-menu__item">{{name}}</li>
+      <li class="mdl-menu__item set-cook-menu-item" data-name="{{name}}" data-index="{{index}}">{{name}}</li>
       {{/each}}
     </ul>
 
-    <button id="add-cook-{{index}}" class="add-cook-button mdl-button mdl-js-button mdl-button--fab">
+    <button id="insert-cook-{{index}}" class="insert-cook-button mdl-button mdl-js-button mdl-button--fab">
       <i class="material-icons">add</i>
     </button>
-
+    <ul class="mdl-menu mdl-js-menu" for="insert-cook-{{index}}">
+      {{#each cannonicalCooks}}
+      <li class="mdl-menu__item insert-cook-menu-item" data-name="{{name}}" data-index="{{index}}">{{name}}</li>
+      {{/each}}
+    </ul>
+    
   </div>
   <!--/Card Actions-->
 

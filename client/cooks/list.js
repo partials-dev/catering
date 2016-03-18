@@ -35,6 +35,12 @@ var deleteAt = function(index) {
   generateNextCook();
 }
 
+var insertAt = function(index, name){
+  var cooks = Session.get('cooks');
+  cooks.splice(index, 0, name);
+  Session.set('cooks', cooks);
+};
+
 var swap = function(i1, i2) {
   var firstPerson = getAt(i1);
   var secondPerson = getAt(i2);
@@ -79,6 +85,7 @@ window.cookList = {
   cooked: cooked,
   setAt: setAt,
   deleteAt: deleteAt,
+  insertAt: insertAt,
   swap: swap,
   generateNextCook: generateNextCook,
 };

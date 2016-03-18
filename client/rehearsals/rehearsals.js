@@ -15,8 +15,9 @@ Template.rehearsal.helpers({
   },
   cannonicalCooks: function() {
    var cooks = window.CANNONICAL_COOKS;
+   var index = this.index;
    return cooks.map(function(name){
-     return {name:name};
+     return {name:name, index:index};
    })
   }
 });
@@ -36,8 +37,16 @@ Template.rehearsal.events({
   "click .delete-cook-button": function(event, template) {
     window.cookList.deleteAt(this.index);
   },
-  "click .add-cook-button": function(event, template) {
-    var name = $(event.currentTarget).data().name;
-    window.cookList.prepend(name);
+  "click .insert-cook-menu-item": function(event, template) {
+    var data = $(event.currentTarget).data(); 
+    var index = data.index;
+    var name = data.name;
+    window.cookList.insertAt(index, name);
+  },
+  "click .set-cook-menu-item": function(event, template) {
+    var data = $(event.currentTarget).data(); 
+    var index = data.index;
+    var name = data.name;
+    window.cookList.setAt(index, name);
   }
 });
