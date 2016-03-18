@@ -19,10 +19,25 @@ body {
   align-self: auto;
   webkit-align-self: auto;
 }
-#add-button {
-  margin-top: 97px;
+
+div.calendar {
+  width: 800px;
+  text-align: center;
 }
 
-#add-button-container {
-  text-align: center;
+div.calendar div {
+  height: 0px;
+  overflow: hidden;
+}
+input.toggle {
+  display: none;
+}
+input.toggle ~ div {
+  height: 0px;
+  overflow: hidden;
+  transition: 1s all cubic-bezier(0.730, -0.485, 0.145, 1.620);
+}
+
+input.toggle:checked ~div {
+  height: 400px;
 }
