@@ -1,44 +1,44 @@
 window.CANNONICAL_COOKS = ['thomas', 'ian', 'jeff', 'adriana', 'dane'];
 
-Session.set('cooks', window.CANNONICAL_COOKS);
+
 
 var prepend = function(name) {
-    var cooks = Session.get('cooks');
+    var cooks = readCooks();
     cooks.unshift(name);
-    Session.set('cooks', cooks); 
+    writeCooks(cooks); 
 };
 
 var getAt = function(i) {
-  var cooks = Session.get('cooks');
+  var cooks = readCooks();
   ensureIndexExists(i);
   return cooks[i];
 };
 
 var cooked = function(name) {
-  var cooks = Session.get('cooks');
+  var cooks = readCooks();
   generateNextCook();
   cooks.shift();
-  Session.set('cooks', cooks); 
+  writeCooks(cooks); 
 };
 
 var setAt = function(i, name) {
-  var cooks = Session.get('cooks');
+  var cooks = readCooks();
   ensureIndexExists(i);
   cooks[i] = name;
-  Session.set('cooks', cooks); 
+  writeCooks(cooks); 
 };
 
 var deleteAt = function(index) {
-  var cooks = Session.get('cooks');
+  var cooks = readCooks();
   cooks.splice(index, 1);
-  Session.set('cooks', cooks);
+  writeCooks(cooks);
   generateNextCook();
 }
 
 var insertAt = function(index, name){
-  var cooks = Session.get('cooks');
+  var cooks = readCooks();
   cooks.splice(index, 0, name);
-  Session.set('cooks', cooks);
+  writeCooks(cooks);
 };
 
 var swap = function(i1, i2) {
@@ -49,21 +49,21 @@ var swap = function(i1, i2) {
 };
 
 var ensureIndexExists = function(i) {
-  var cooks = Session.get('cooks');
+  var cooks = readCooks();
   var lastIndex = cooks.length - 1;
   while(i > lastIndex) {
     generateNextCook();
-    cooks = Session.get('cooks');
+    cooks = readCooks();
     lastIndex = cooks.length - 1;
   }
 };
 
 var generateNextCook = function() {
-  var cooks = Session.get('cooks');
+  var cooks = readCooks();
   var lastIndex = cooks.length - 1;
   var lastCook = cooks[lastIndex];
   cooks.push(whoFollows(lastCook));
-  Session.set('cooks', cooks); 
+  writeCooks(cooks); 
 };
 
 var whoFollows = function(name) {
@@ -77,6 +77,21 @@ var whoFollows = function(name) {
   return followers[name];
 };
 
+var readCooks = function() {
+  var doc = Cooks.findOne({});
+  if (!doc) {
+    writeCooks(window.CANNONICAL_COOKS);
+    doc = Cooks.findOne({});
+  }
+  return doc.value;
+};
+
+var writeCooks = function(cooks) {
+  Meteor.call("clearCooks");
+  var doc = {value: cooks};
+  Cooks.insert(doc);
+};
+
 //Public Interface
 
 window.cookList = {
@@ -88,4 +103,5 @@ window.cookList = {
   insertAt: insertAt,
   swap: swap,
   generateNextCook: generateNextCook,
+  readCooks: readCooks
 };

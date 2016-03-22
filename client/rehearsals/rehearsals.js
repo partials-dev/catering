@@ -1,6 +1,6 @@
 Template.rehearsal.helpers({
   cookData: function() {
-    var cooks = Session.get('cooks');
+    var cooks = window.cookList.readCooks();
     var index = this.index;
     var name = cooks[index];
     var cookData = {name: name, index: this.index, className: 'card-bubble'};
