@@ -1,3 +1,7 @@
+Template.rehearsal.onCreated(function() {
+  this.showFaceSelector = new ReactiveVar(false);
+});
+
 Template.rehearsal.helpers({
   cookData: function() {
     var cooks = window.cookList.readCooks();
@@ -19,6 +23,18 @@ Template.rehearsal.helpers({
    return cooks.map(function(name){
      return {name:name, index:index};
    })
+  },
+  up: function() {
+    if(Template.instance().showFaceSelector.get()) {
+      return 'up';
+    } else {
+      return '';
+    }
+  },
+  cooks: function() {
+    return window.CANNONICAL_COOKS.map(function(cook) {
+      return {name: cook};
+    });
   }
 });
 
@@ -43,10 +59,29 @@ Template.rehearsal.events({
     var name = data.name;
     window.cookList.insertAt(index, name);
   },
-  "click .set-cook-menu-item": function(event, template) {
+  "click .set-cook-button": function(event, template) {
+    template.onSelectCook = function(name) {
+      var data = $(event.currentTarget).data(); 
+      var index = data.index;
+      window.cookList.setAt(index, name);
+    };
+  },
+  "click .uses-face-selector": function(event, template) {
+    template.showFaceSelector.set(true);
+  },
+  "click .face-selector": function(event, template) {
+    template.showFaceSelector.set(false);
+    template.onSelectCook = undefined;
+  },
+  "click .insert-cook-button": function(event, template) {
+    template.onSelectCook = function(name) {
+      var data = $(event.currentTarget).data(); 
+      var index = data.index;
+      window.cookList.insertAt(index, name);
+    };
+  },
+  "click .face-selector .user": function(event, template) {
     var data = $(event.currentTarget).data(); 
-    var index = data.index;
-    var name = data.name;
-    window.cookList.setAt(index, name);
+    template.onSelectCook(data.name);
   }
 });

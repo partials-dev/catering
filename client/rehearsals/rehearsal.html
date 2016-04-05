@@ -10,32 +10,54 @@
   <!--Card Actions-->
   <div class="mdl-card__actions mdl-card--border">
 
-    <button id="swap-button-{{index}}" class="swap-button mdl-button mdl-js-button mdl-button--fab {{getSelectedClass index}}">
-      <i class="material-icons">compare_arrows</i>
-    </button>
+    <!--Buttons-->
+    <div class="actions {{up}}">
+      <button id="swap-button-{{index}}" class="swap-button mdl-button mdl-js-button mdl-button--fab {{getSelectedClass index}}">
+        <i class="material-icons">compare_arrows</i>
+      </button>
 
-    <button id="delete-cook-{{index}}" class="delete-cook-button mdl-button mdl-js-button mdl-button--fab">
-      <i class="material-icons">delete</i>
-    </button>
+      <button id="delete-cook-{{index}}" class="delete-cook-button mdl-button mdl-js-button mdl-button--fab">
+        <i class="material-icons">delete</i>
+      </button>
 
-    <button id="set-cook-{{index}}" class="set-cook-button mdl-button mdl-js-button mdl-button--fab">
-      <i class="material-icons">face</i>
-    </button>
-    <ul class="mdl-menu mdl-js-menu" for="set-cook-{{index}}">
-      {{#each cannonicalCooks}}
-      <li class="mdl-menu__item set-cook-menu-item" data-name="{{name}}" data-index="{{index}}">{{name}}</li>
+      <button id="set-cook-{{index}}" data-index="{{index}}" data-name="{{name}}" class="uses-face-selector set-cook-button mdl-button mdl-js-button mdl-button--fab">
+        <i class="material-icons">face</i>
+      </button>
+      <!--<ul class="mdl-menu mdl-js-menu" for="set-cook-{{index}}">-->
+        <!--{{#each cannonicalCooks}}-->
+        <!--<li class="mdl-menu__item set-cook-menu-item" data-name="{{name}}" data-index="{{index}}">{{name}}</li>-->
+        <!--{{/each}}-->
+      <!--</ul>-->
+
+    <button id="insert-cook-{{index}}" data-index="{{index}}" data-name="{{name}}" class="uses-face-selector insert-cook-button mdl-button mdl-js-button mdl-button--fab">
+        <i class="material-icons">add</i>
+      </button>
+      <!--<ul class="mdl-menu mdl-js-menu" for="insert-cook-{{index}}">-->
+        <!--{{#each cannonicalCooks}}-->
+        <!--<li class="mdl-menu__item insert-cook-menu-item" data-name="{{name}}" data-index="{{index}}">{{name}}</li>-->
+        <!--{{/each}}-->
+      <!--</ul>-->
+      
+    </div>
+    <!--/Buttons-->
+
+    <!--Face Selector-->
+    <div class="face-selector actions {{up}}">
+      <div class="mdl-grid">
+      <div class="mdl-cell--4-col">
+      <button class="mdl-button mdl-js-button mdl-button--fab mdl-cell mdl-cell--4-col">
+        <i class="material-icons">cancel</i>
+      </button>
+      </div>
+      {{#each cooks}}
+      <div class="mdl-cell--4-col">
+      <div class="user clickable {{className}}" data-name="{{name}}">
+      </div>
+      </div>
       {{/each}}
-    </ul>
-
-    <button id="insert-cook-{{index}}" class="insert-cook-button mdl-button mdl-js-button mdl-button--fab">
-      <i class="material-icons">add</i>
-    </button>
-    <ul class="mdl-menu mdl-js-menu" for="insert-cook-{{index}}">
-      {{#each cannonicalCooks}}
-      <li class="mdl-menu__item insert-cook-menu-item" data-name="{{name}}" data-index="{{index}}">{{name}}</li>
-      {{/each}}
-    </ul>
-    
+      </div>
+    </div>
+    <!--/Face Selector-->
   </div>
   <!--/Card Actions-->
 

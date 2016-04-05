@@ -5,9 +5,35 @@
   top: 10px;
 }
 
-#catering .mdl-card {
-  overflow: visible;
+#catering .mdl-card__title {
+  min-height: 75px;
 }
 
-#catering .mdl-menu {
+#catering .mdl-card__title {
+  background-color: white;
+}
+
+#catering .mdl-card__actions {
+  overflow: hidden;
+}
+
+#catering .mdl-card {
+  /*overflow: visible;*/
+}
+
+.actions {
+  min-height: 175px;
+  transition: 0.5s ease;
+}
+
+.up {
+  transform: translateY(-175px);
+}
+
+#catering .face-selector .mdl-cell {
+  margin: 0;
+}
+
+.clickable {
+  cursor: pointer;
 }
