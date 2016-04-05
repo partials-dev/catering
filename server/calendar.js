@@ -6,7 +6,7 @@ var CLIENT_SECRET = global.googleClientSecrets.web.client_secret;
 var OAuth2 = google.auth.OAuth2;
 var oauth2Client = new OAuth2(CLIENT_ID, CLIENT_SECRET, 'http://dev.partialcinema.com:3000/helper/auth');
 var accessToken = null;
-var refreshToken = process.env.GOOGLE_CALENDAR_REFRESH_TOKEN;
+var refreshToken = global.googleCalendarRefreshToken;
 
 oauth2Client.setCredentials({
   access_token: accessToken,

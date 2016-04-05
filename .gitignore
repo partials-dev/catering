@@ -1,2 +1,2 @@
-run-catering.bat
-server\gitignore
+server/gitignore
+.gitignore
