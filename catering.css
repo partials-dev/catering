@@ -20,6 +20,9 @@ body {
   webkit-align-self: auto;
 }
 
+#catering-page {
+  padding: 0;
+}
 /*Slide out calendar widget*/
 div.calendar {
   width: 800px;

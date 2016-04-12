@@ -46,6 +46,23 @@ Template.rehearsal.helpers({
   },
   currentAction: function() {
     return Template.instance().currentAction.get();
+  },
+  repositionInsertButton: function() {
+    if (Template.instance().currentAction.get() === "add") {
+      console.log("Repositioning Insert Button!")
+      return "reposition-insert";
+    } else {
+      console.log("Just kidding")
+      return "";
+    }
+  },
+  repositionSetButton: function() {
+    if (Template.instance().currentAction.get() === "face") {
+      console.log("Repositioning Set Button!")
+      return "reposition-set";
+    } else {
+      return "";    
+    }
   }
 });
 
@@ -82,6 +99,7 @@ Template.rehearsal.events({
     template.showFaceSelector.set(true);
   },
   "click .face-selector": function(event, template) {
+    template.currentAction.set(null);
     template.showFaceSelector.set(false);
     template.onSelectCook = undefined;
   },
