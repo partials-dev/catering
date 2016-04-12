@@ -20,11 +20,11 @@ body {
   webkit-align-self: auto;
 }
 
+/*Slide out calendar widget*/
 div.calendar {
   width: 800px;
   text-align: center;
 }
-
 div.calendar div {
   height: 0px;
   overflow: hidden;
@@ -37,7 +37,6 @@ input.toggle ~ div {
   overflow: hidden;
   transition: 1s all cubic-bezier(0.730, -0.485, 0.145, 1.620);
 }
-
 input.toggle:checked ~div {
   height: 400px;
 }
