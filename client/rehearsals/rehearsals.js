@@ -1,6 +1,13 @@
 Template.rehearsal.onCreated(function() {
   this.showFaceSelector = new ReactiveVar(false);
+  this.currentAction = new ReactiveVar();
 });
+
+var cooks = function() {
+  return window.CANNONICAL_COOKS.map(function(cook) {
+    return {name: cook};
+  });
+}
 
 Template.rehearsal.helpers({
   cookData: function() {
@@ -31,10 +38,14 @@ Template.rehearsal.helpers({
       return '';
     }
   },
-  cooks: function() {
-    return window.CANNONICAL_COOKS.map(function(cook) {
-      return {name: cook};
-    });
+  firstRowCooks: function() {
+   return cooks().slice(0,2); 
+  },
+  secondRowCooks: function() {
+    return cooks().slice(2);
+  },
+  currentAction: function() {
+    return Template.instance().currentAction.get();
   }
 });
 
@@ -60,6 +71,7 @@ Template.rehearsal.events({
     window.cookList.insertAt(index, name);
   },
   "click .set-cook-button": function(event, template) {
+    template.currentAction.set("face");
     template.onSelectCook = function(name) {
       var data = $(event.currentTarget).data(); 
       var index = data.index;
@@ -74,6 +86,7 @@ Template.rehearsal.events({
     template.onSelectCook = undefined;
   },
   "click .insert-cook-button": function(event, template) {
+    template.currentAction.set("add");
     template.onSelectCook = function(name) {
       var data = $(event.currentTarget).data(); 
       var index = data.index;
