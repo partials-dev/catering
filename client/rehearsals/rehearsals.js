@@ -49,16 +49,13 @@ Template.rehearsal.helpers({
   },
   repositionInsertButton: function() {
     if (Template.instance().currentAction.get() === "add") {
-      console.log("Repositioning Insert Button!")
       return "reposition-insert";
     } else {
-      console.log("Just kidding")
       return "";
     }
   },
   repositionSetButton: function() {
     if (Template.instance().currentAction.get() === "face") {
-      console.log("Repositioning Set Button!")
       return "reposition-set";
     } else {
       return "";    
@@ -97,6 +94,9 @@ Template.rehearsal.events({
   },
   "click .uses-face-selector": function(event, template) {
     template.showFaceSelector.set(true);
+    //$target = $(event.currentTarget);
+    //$target.removeClass("mdl-button--fab");
+    //$target.addClass("mdl-button--raised");
   },
   "click .face-selector": function(event, template) {
     template.currentAction.set(null);
