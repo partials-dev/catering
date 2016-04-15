@@ -14,17 +14,36 @@
 }
 
 #catering .mdl-card__actions {
+  color: rgba(255, 255, 255, 0.5);
   overflow: hidden;
 }
+
+/*.mdl-card__actions::after {*/
+ /*content: "";*/
+ /*background-image: url("https://drscdn.500px.org/photo/original/store/71958759/m%3D900_k%3D2_b%3D2_dpi%3D300_attachment%3D1_tags%3D1/0dedad76cb1e8c76ba8822008d2385c5");*/
+ /*background-size: 500px;*/
+ /*opacity: 0.75;*/
+ /*top: 0;*/
+ /*left: 0;*/
+ /*bottom: 0;*/
+ /*right: 0;*/
+ /*position: absolute;*/
+ /*z-index: -1;   */
+/*}*/
 
 #catering .mdl-card {
   /*overflow: visible;*/
 }
 
 #catering .mdl-button--fab {
-  background: rgba(158,158,158,.25);
+  background: rgb(245, 245, 245);
 }
-
+#catering .mdl-button--fab.mdl-button--colored {
+  background-color: rgb(255,82,82);
+}
+#catering .raised {
+    box-shadow: 0 6px 8px 0px rgba(0,0,0,0.2),0 3px 1px -2px rgba(0,0,0,0.2),0 1px 5px 0 rgba(0,0,0,0.2);
+}
 .actions {
   min-height: 175px;
   transition: 0.5s ease;
@@ -65,11 +84,13 @@
 } 
 #catering .reposition-insert {
   transform: translateY(98px) translateX(-124px);
-  box-shadow:0 6px 8px 0px rgba(0,0,0,.2),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,0.2);
 }
 #catering .reposition-set {
   transform: translateY(98px) translateX(-26px);
-  box-shadow: 0 6px 8px 0px rgba(0,0,0,.2),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,0.2);
+}
+
+.face-selector {
+
 }
 
 #catering .face-selector .mdl-cell {

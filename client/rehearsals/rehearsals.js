@@ -19,7 +19,7 @@ Template.rehearsal.helpers({
   },
   getSelectedClass: function(index) {
     if (Session.get("swap-button-selected-" + index)) {
-      return "mdl-button--colored";
+      return "mdl-button--colored raised";
     } else {
       return "";
     }
@@ -49,14 +49,14 @@ Template.rehearsal.helpers({
   },
   repositionInsertButton: function() {
     if (Template.instance().currentAction.get() === "add") {
-      return "reposition-insert";
+      return "reposition-insert raised";
     } else {
       return "";
     }
   },
   repositionSetButton: function() {
     if (Template.instance().currentAction.get() === "face") {
-      return "reposition-set";
+      return "reposition-set raised";
     } else {
       return "";    
     }

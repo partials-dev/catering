@@ -1,10 +1,20 @@
 body {
-  background: #ffffff url("cubes.jpg") fixed;
-  background-size: 1500px;
+  background-color: #f5f5f5;
+  background-image: url("blue-table.jpg");
+  background-position: center;
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+
+@media (max-width: 880px) {
+  body {
+    background-size: auto 100%;  
+  }
 }
 
 .square-card.mdl-card {
   width: 250px;
+  min-width: 250px;
   height: 250px;
 }
 
@@ -20,9 +30,17 @@ body {
   webkit-align-self: auto;
 }
 
-#catering-page {
-  padding: 0;
+/*
+ *1 col 564px
+ *2 col 830px
+*/
+@media (max-width: 830px) {
+  .card-wrapper {
+    margin: 0 auto;
+    width: 266px;
+  }
 }
+
 /*Slide out calendar widget*/
 div.calendar {
   width: 800px;
