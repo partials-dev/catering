@@ -13,6 +13,7 @@ body {
 }
 
 .square-card.mdl-card {
+  background-color: transparent;
   width: 250px;
   min-width: 250px;
   height: 250px;

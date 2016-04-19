@@ -14,7 +14,7 @@
 }
 
 #catering .mdl-card__actions {
-  color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.35);
   overflow: hidden;
 }
 
