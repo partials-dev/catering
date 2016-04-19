@@ -8,24 +8,24 @@
   display: inline-block;
 }
 
-[data-name="thomas"] {
-  background-image: URL("thomas.jpg");
+#catering .thomas {
+  background-image: URL("thomas.jpg") !important;
 }
 
-[data-name="ian"] {
-  background-image: URL("ian.jpg");
+#catering .ian {
+  background-image: URL("ian.jpg") !important;
 }
 
-[data-name="jeff"] {
-  background-image: URL("jeff.jpg");
+#catering .jeff {
+  background-image: URL("jeff.jpg") !important;
 }
 
-[data-name="adriana"] {
-  background-image: URL("adriana.jpg");
+#catering .adriana {
+  background-image: URL("adriana.jpg") !important;
 }
 
-[data-name="dane"] {
-  background-image: URL("dane.jpg");
+#catering .dane {
+  background-image: URL("dane.jpg") !important;
 }
 
 .catering-swap {
