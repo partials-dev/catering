@@ -1,51 +1,67 @@
-var google = Meteor.npmRequire("googleapis");
-var scopes = ['https://www.googleapis.com/auth/calendar'];
-var CLIENT_ID = global.googleClientSecrets.web.client_id;
-var CLIENT_SECRET = global.googleClientSecrets.web.client_secret;
+import * as cooks from '../lib/cooks-list'
 
-var OAuth2 = google.auth.OAuth2;
-var oauth2Client = new OAuth2(CLIENT_ID, CLIENT_SECRET, 'http://dev.partialcinema.com:3000/helper/auth');
-var accessToken = null;
-var refreshToken = global.googleCalendarRefreshToken;
+const google = Meteor.npmRequire("googleapis");
+const scopes = ['https://www.googleapis.com/auth/calendar'];
+const CLIENT_ID = global.googleClientSecrets.web.client_id;
+const CLIENT_SECRET = global.googleClientSecrets.web.client_secret;
+
+const OAuth2 = google.auth.OAuth2;
+const oauth2Client = new OAuth2(CLIENT_ID, CLIENT_SECRET, 'http://dev.partialcinema.com:3000/helper/auth');
+const accessToken = null;
+const refreshToken = global.googleCalendarRefreshToken;
 
 oauth2Client.setCredentials({
   access_token: accessToken,
   refresh_token: refreshToken
 });
 
-var googleAuth = oauth2Client;
-var calendar = google.calendar({version: 'v3', auth: googleAuth});
-var moment = Meteor.npmRequire("moment");
+const googleAuth = oauth2Client;
+const calendar = google.calendar({version: 'v3', auth: googleAuth});
+const moment = Meteor.npmRequire("moment");
 
-var calendarIds = {
+const CALENDAR_IDS = {
   rehearsal:  'scromh7crg9cm0u695pumsrb4o@group.calendar.google.com',
   show:       'm0crma3ead736lct9r0f88s1sk@group.calendar.google.com',
   other:      'ghptaulpabvqsefm19cfhokh54@group.calendar.google.com'
 };
 
 function listEvents(type, parameters, callback) {
-  parameters.calendarId = calendarIds[type];
+  parameters.calendarId = CALENDAR_IDS[type];
   calendar.events.list(parameters, callback);
 }
 
-function insertRehearsal(rehearsal) {
-  Rehearsals.insert(rehearsal);
-}
+function refreshRehearsals() {
+  console.log("Refreshing rehearsals.");
+  const cookList = Cooks.findOne({});
+  const todayStart = moment().hours(0).minutes(1);
+  const lastRefreshedAt = moment(cookList.lastRefreshedAt) || todayStart;
+  listEvents("rehearsal", {orderBy: "startTime", maxResults: 5, singleEvents: true, timeMin: lastRefreshedAt.format()}, Meteor.bindEnvironment(gotRehearsals)); 
 
-function gotRehearsals(err, results) {
-  if (err) {
-    console.log("Error retrieving calendar events: ", err);
+  function gotRehearsals(err, results) {
+    if (err) {
+      console.log("Error retrieving calendar events: ", err);
+      return;
+    }
+
+    Rehearsals.remove({});
+    const now = moment();
+    results.items.forEach(function(rehearsal) {
+      const isPastRehearsal = moment(rehearsal.start.dateTime).isBefore(now);
+      if (isPastRehearsal) {
+        cooks.cooked();
+      } else {
+        Rehearsals.insert(rehearsal);
+      }
+    });
+
+    Cooks.update(cookList._id, { $set: {lastRefreshedAt: now.toDate() }});
   }
-  results.items.forEach(insertRehearsal);
-  //results.items.forEach(function (item){console.log(item.start)});
 }
-
-Rehearsals.remove({});
-
-var timeMin = moment().hours(0).minutes(1).format();
-
-listEvents("rehearsal", {orderBy: "startTime", maxResults: 5, singleEvents: true, timeMin: timeMin}, Meteor.bindEnvironment(gotRehearsals)); 
 
 Meteor.startup(function () {
-  // code to run on server at startup
+  refreshRehearsals();
+});
+
+Meteor.methods({
+  refreshRehearsals
 });

@@ -1,17 +1,20 @@
+import * as cookList from '../../lib/cooks-list'
+Meteor.call('refreshRehearsals');
+
 Template.rehearsal.onCreated(function() {
   this.showFaceSelector = new ReactiveVar(false);
   this.currentAction = new ReactiveVar();
 });
 
 var cooks = function() {
-  return window.CANNONICAL_COOKS.map(function(cook) {
+  return cookList.CANNONICAL_COOKS.map(function(cook) {
     return {name: cook};
   });
 }
 
 Template.rehearsal.helpers({
   cookData: function() {
-    var cooks = window.cookList.readCooks();
+    var cooks = cookList.readCooks();
     var index = this.index;
     var name = cooks[index];
     var cookData = {name: name, index: this.index, className: 'card-bubble'};
@@ -25,7 +28,7 @@ Template.rehearsal.helpers({
     }
   },
   cannonicalCooks: function() {
-   var cooks = window.CANNONICAL_COOKS;
+   var cooks = cookList.CANNONICAL_COOKS;
    var index = this.index;
    return cooks.map(function(name){
      return {name:name, index:index};
@@ -68,7 +71,7 @@ Template.rehearsal.events({
   "click .swap-button": function(event, template) {
     if (previouslyChecked) {
       Session.set("swap-button-selected-" + previouslyChecked.index, false)
-      window.cookList.swap(this.index, previouslyChecked.index);
+      cookList.swap(this.index, previouslyChecked.index);
       previouslyChecked = null;
     } else {
       previouslyChecked = this;
@@ -76,20 +79,20 @@ Template.rehearsal.events({
     }
   },
   "click .delete-cook-button": function(event, template) {
-    window.cookList.deleteAt(this.index);
+    cookList.deleteAt(this.index);
   },
   "click .insert-cook-menu-item": function(event, template) {
     var data = $(event.currentTarget).data(); 
     var index = data.index;
     var name = data.name;
-    window.cookList.insertAt(index, name);
+    cookList.insertAt(index, name);
   },
   "click .set-cook-button": function(event, template) {
     template.currentAction.set("face");
     template.onSelectCook = function(name) {
       var data = $(event.currentTarget).data(); 
       var index = data.index;
-      window.cookList.setAt(index, name);
+      cookList.setAt(index, name);
     };
   },
   "click .uses-face-selector": function(event, template) {
@@ -108,7 +111,7 @@ Template.rehearsal.events({
     template.onSelectCook = function(name) {
       var data = $(event.currentTarget).data(); 
       var index = data.index;
-      window.cookList.insertAt(index, name);
+      cookList.insertAt(index, name);
     };
   },
   "click .face-selector .user": function(event, template) {

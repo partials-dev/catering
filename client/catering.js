@@ -1,7 +1,9 @@
+import moment from 'moment';
+
 Template.body.helpers({
   rehearsals: function() {
-    return Rehearsals.find({}).fetch().sort(compareStartTime).map(formatDate);
-  },
+    return Rehearsals.find().fetch().filter(futureRehearsals).sort(compareStartTime).map(formatDate);
+  }
 });
 
 var compareStartTime = function(a, b) { //sorts calendar events by date
@@ -19,3 +21,8 @@ var formatDate = function(rehearsal, index) {
   var weekDay = start.format('dddd');
   return {date: date, weekDay: weekDay, index: index};
 };
+
+function futureRehearsals(rehearsal) {
+  const now = moment();
+  return moment(rehearsal.start.dateTime).isAfter(now);
+}

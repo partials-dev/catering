@@ -1,0 +1,26 @@
+{
+  "name": "catering",
+  "version": "0.0.1",
+  "description": "A small Meteor app for sharing cooking duties among friends or family.",
+  "main": "n/a",
+  "dependencies": {
+    "moment": "^2.13.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/partials-music/catering.git"
+  },
+  "keywords": [
+    "meteor"
+  ],
+  "author": "Partials (http://partials.co)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/partials-music/catering/issues"
+  },
+  "homepage": "https://github.com/partials-music/catering#readme"
+}
