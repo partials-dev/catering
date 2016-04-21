@@ -31,12 +31,17 @@ function listEvents(type, parameters, callback) {
 }
 
 function refreshRehearsals() {
+  console.log('');
   console.log("Refreshing rehearsals.");
   const cookList = Cooks.findOne({});
   const todayStart = moment().hours(0).minutes(1);
   const lastRefreshedAt = moment(cookList.lastRefreshedAt) || todayStart;
-  listEvents("rehearsal", {orderBy: "startTime", maxResults: 5, singleEvents: true, timeMin: lastRefreshedAt.format()}, Meteor.bindEnvironment(gotRehearsals)); 
+  const oneWeekFromToday = todayStart.add(31, 'days');
 
+  console.log(`Last refreshed at ${lastRefreshedAt.format('LLL')}`)
+  listEvents("rehearsal", {orderBy: "startTime", singleEvents: true, timeMin: lastRefreshedAt.format(), timeMax: oneWeekFromToday.format()}, Meteor.bindEnvironment(gotRehearsals)); 
+
+  var pastRehearsals = 0;
   function gotRehearsals(err, results) {
     if (err) {
       console.log("Error retrieving calendar events: ", err);
@@ -47,13 +52,17 @@ function refreshRehearsals() {
     const now = moment();
     results.items.forEach(function(rehearsal) {
       const isPastRehearsal = moment(rehearsal.start.dateTime).isBefore(now);
+      const humanReadableStartTime = moment(rehearsal.start.dateTime).format('LLL');
+      console.log(`Got event startin at ${humanReadableStartTime}`);
       if (isPastRehearsal) {
+        pastRehearsals++;
         cooks.cooked();
       } else {
         Rehearsals.insert(rehearsal);
       }
     });
 
+    console.log(`Found ${pastRehearsals} past rehearsals`);
     Cooks.update(cookList._id, { $set: {lastRefreshedAt: now.toDate() }});
   }
 }
