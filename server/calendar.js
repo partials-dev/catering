@@ -59,6 +59,9 @@ function refreshRehearsals() {
         cooks.cooked();
       } else {
         Rehearsals.insert(rehearsal);
+        if(Rehearsals.find().count() > cooks.count()) {
+          cooks.generateNextCook()
+        }
       }
     });
 
