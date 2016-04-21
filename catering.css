@@ -1,15 +1,9 @@
 body {
   background-color: #f5f5f5;
   background-image: url("blue-table.jpg");
-  background-position: center;
-  background-size: 100%;
+  background-position: right;
+  background-size: cover;
   background-repeat: no-repeat;
-}
-
-@media (max-width: 880px) {
-  body {
-    background-size: auto 100%;  
-  }
 }
 
 .square-card.mdl-card {
@@ -22,7 +16,7 @@ body {
 #catering .mdl-card__title {
   flex-direction: column;
   justify-content: flex-start;
-  
+
   webkit-align-items: flex-start;
   align-items: flex-start;
 }
@@ -40,6 +34,15 @@ body {
     margin: 0 auto;
     width: 266px;
   }
+}
+
+#logo {
+  background-image: url("fancy-p.png");
+  height: 40px;
+  width: 30px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin-right: 10px;
 }
 
 /*Slide out calendar widget*/
