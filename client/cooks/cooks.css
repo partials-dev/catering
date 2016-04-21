@@ -1,10 +1,10 @@
-.user {
+#catering .user {
   width: 56px;
   height: 56px;
   border-radius: 50%;
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
+  background-repeat: no-repeat !important;
+  background-position: center center !important;
+  background-size: cover !important;
   display: inline-block;
 }
 
