@@ -1,7 +1,7 @@
 import * as cookList from '../../lib/cooks-list'
 Meteor.call('refreshRehearsals');
 
-Template.rehearsal.onCreated(function() {
+Template.cateredRehearsal.onCreated(function() {
   this.showFaceSelector = new ReactiveVar(false);
   this.currentAction = new ReactiveVar();
 });
@@ -12,7 +12,7 @@ var cooks = function() {
   });
 }
 
-Template.rehearsal.helpers({
+Template.cateredRehearsal.helpers({
   cookData: function() {
     var cooks = cookList.readCooks();
     var index = this.index;
@@ -67,7 +67,7 @@ Template.rehearsal.helpers({
 });
 
 var previouslyChecked = null;
-Template.rehearsal.events({
+Template.cateredRehearsal.events({
   "click .swap-button": function(event, template) {
     if (previouslyChecked) {
       Session.set("swap-button-selected-" + previouslyChecked.index, false)

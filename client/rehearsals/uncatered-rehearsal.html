@@ -1,0 +1,33 @@
+<template name="uncateredRehearsal">
+ 
+<div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--middle square-card">
+
+  <div class="mdl-card__title">
+    <h2 class="mdl-card__title-text">{{weekDay}}</h2>
+    <span id="date" class="mdl-card__subtitle-text">{{date}}</span>
+    <button id="uncatered" class="card-bubble mdl-button mdl-js-button mdl-button--fab">
+      <i class="material-icons">remove</i>
+      
+    </button>
+    <div class="mdl-tooltip" for="uncatered">
+      Uncatered
+    </div>
+  </div>
+
+  <!--Card Actions-->
+  <div class="mdl-card__actions mdl-card--border">
+    <!--Buttons-->
+    <div class="actions">
+      <div class="uncatered-box">
+        <div class="uncatered-label">
+          Uncatered Rehearsal
+        </div>
+      </div>
+    </div>
+    <!--/Buttons-->
+  </div>
+  <!--/Card Actions-->
+
+</div>
+
+</template>
