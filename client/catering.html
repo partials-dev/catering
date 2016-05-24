@@ -12,6 +12,8 @@
 </head>
 
 <body id="catering">
+  
+  {{> loginModal}}
 
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--no-desktop-drawer-button">
   <header class="mdl-layout__header">
@@ -27,12 +29,14 @@
       <!-- Navigation. We hide it in small screens. -->
       <nav class="mdl-navigation mdl-layout--large-screen-only">
         {{> navLinks}}
+        {{> toggleLoginButton}}
       </nav>
     </div>
   </header>
   <div class="mdl-layout__drawer">
     <span class="mdl-layout-title">Helpful Bits</span>
     <nav class="mdl-navigation">
+      {{> toggleLoginButton}}
       {{> navLinks}}
     </nav>
   </div>

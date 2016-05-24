@@ -33,3 +33,4 @@ function futureRehearsals(rehearsal) {
   const now = moment();
   return moment(rehearsal.start.dateTime).isAfter(now);
 }
+

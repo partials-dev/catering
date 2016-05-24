@@ -16,6 +16,10 @@
   background-image: URL("ian.jpg") !important;
 }
 
+#catering .alex {
+ background-image: URL("alex.jpg") !important;
+}
+
 #catering .jeff {
   background-image: URL("jeff.jpg") !important;
 }
