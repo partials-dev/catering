@@ -1,4 +1,5 @@
 import moment from 'moment';
+import Rehearsals from '../lib/collections/cooks';
 
 var allRehearsals = new ReactiveVar([]);
 var cateredRehearsals = new ReactiveVar([]);

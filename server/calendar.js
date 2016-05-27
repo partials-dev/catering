@@ -1,4 +1,11 @@
-import * as cooks from '../lib/cooks-list'
+import CookList from '../lib/cooks-list'
+import Cooks from '../lib/collections/cooks';
+import Rehearsals from '../lib/collections/cooks';
+import rebuildCooks from './cooks';
+
+rebuildCooks()
+
+const cooks = new CookList();
 
 const google = Meteor.npmRequire("googleapis");
 const scopes = ['https://www.googleapis.com/auth/calendar'];

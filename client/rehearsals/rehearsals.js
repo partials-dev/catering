@@ -1,4 +1,7 @@
-import * as cookList from '../../lib/cooks-list'
+//import CookList from '../session-cooks-list'
+import CookList from '../../lib/cooks-list'
+
+const cookList = new CookList();
 Meteor.call('refreshRehearsals');
 
 Template.cateredRehearsal.onCreated(function() {
