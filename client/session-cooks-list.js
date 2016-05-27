@@ -1,21 +1,31 @@
-import * as cooks from '../lib/cooks-list'
+import CookList from '../lib/cooks-list'
+const cookList = new CookList()
+Session.set('cooks', cookList.readCooks());
 
-const originalReadCooks = cooks.readCooks.bind(cooks);
-const originalWriteCooks = cooks.writeCooks.bind(cooks);
-Session.set('cooks', originalReadCooks());
-
-cooks.readCooks = function () {
-  if (Meteor.user()) {
-    return originalWriteCooks();
+Tracker.autorun(function() {
+  if(Meteor.user()) {
+    cookList.dependency.changed()
   } else {
-    return Session.get('cooks');
+    cookList.dependency.changed()
+  }
+})
+
+export default class SessionCooksList extends CookList {
+  readCooks () {
+    var cooks;
+    if (Meteor.user()) {
+      cooks = super.readCooks();
+    } else {
+      cooks = Session.get('cooks');
+    }
+    return cooks;
+  }
+  writeCooks (cooks) {
+    if (Meteor.user()) {
+      return super.writeCooks(cooks);
+    } else {
+      Session.set('cooks', cooks); 
+    }
   }
 }
 
-cooks.writeCooks = function () {
-  if (Meteor.user()) {
-    return originalWriteCooks();
-  } else {
-    Session.set('cooks', cooks); 
-  }
-}

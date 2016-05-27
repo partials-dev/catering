@@ -1,6 +1,6 @@
 import CookList from '../lib/cooks-list'
 import Cooks from '../lib/collections/cooks';
-import Rehearsals from '../lib/collections/cooks';
+import Rehearsals from '../lib/collections/rehearsals';
 import rebuildCooks from './cooks';
 
 rebuildCooks()

@@ -10,6 +10,8 @@ Template.loginModal.events({
 Tracker.autorun(function () {
   if (Meteor.user()) {
     var dialog = $('.login-modal')[0];
-    dialog.close()
+    if (dialog.attributes.open) {
+      dialog.close()
+    }
   }
 })

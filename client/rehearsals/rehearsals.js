@@ -1,5 +1,6 @@
-//import CookList from '../session-cooks-list'
-import CookList from '../../lib/cooks-list'
+import CookList from '../session-cooks-list'
+//import CookList from '../../lib/cooks-list'
+import {CANNONICAL_COOKS} from '../../lib/cooks-list'
 
 const cookList = new CookList();
 Meteor.call('refreshRehearsals');
@@ -10,7 +11,7 @@ Template.cateredRehearsal.onCreated(function() {
 });
 
 var cooks = function() {
-  return cookList.CANNONICAL_COOKS.map(function(cook) {
+  return CANNONICAL_COOKS.map(function(cook) {
     return {name: cook};
   });
 }
@@ -31,7 +32,7 @@ Template.cateredRehearsal.helpers({
     }
   },
   cannonicalCooks: function() {
-   var cooks = cookList.CANNONICAL_COOKS;
+   var cooks = CANNONICAL_COOKS;
    var index = this.index;
    return cooks.map(function(name){
      return {name:name, index:index};
