@@ -1,4 +1,7 @@
 import CookList from '../lib/cooks-list'
+import {CANNONICAL_COOKS} from '../lib/cooks-list'
+import upcomingRehearsals from './upcoming-rehearsals'
+
 const cookList = new CookList()
 Session.set('cooks', cookList.readCooks());
 
@@ -10,13 +13,30 @@ Tracker.autorun(function() {
   }
 })
 
+
 export default class SessionCooksList extends CookList {
+  constructor () {
+    super()
+    Tracker.autorun(() => {
+      const rehearsals = upcomingRehearsals()
+      var cooks = Session.get('cooks');
+      if (!cooks || !rehearsals) { return }
+      if (cooks.length < rehearsals.length) {
+        this.ensureIndexExists(rehearsals.length - 1)
+      }
+    })
+  }
+
   readCooks () {
     var cooks;
     if (Meteor.user()) {
       cooks = super.readCooks();
     } else {
-      cooks = Session.get('cooks');
+      var cooks = Session.get('cooks');
+      if (!cooks) {
+        Session.set('cooks', CANNONICAL_COOKS)
+        cooks = Session.get('cooks')
+      }
     }
     return cooks;
   }
