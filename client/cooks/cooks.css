@@ -8,30 +8,6 @@
   display: inline-block;
 }
 
-#catering .thomas {
-  background-image: URL("thomas.jpg") !important;
-}
-
-#catering .ian {
-  background-image: URL("ian.jpg") !important;
-}
-
-#catering .alex {
- background-image: URL("alex.jpg") !important;
-}
-
-#catering .jeff {
-  background-image: URL("jeff.jpg") !important;
-}
-
-#catering .adriana {
-  background-image: URL("adriana.jpg") !important;
-}
-
-#catering .dane {
-  background-image: URL("dane.jpg") !important;
-}
-
 .catering-swap {
   right: 10px;
   bottom: 10px;
