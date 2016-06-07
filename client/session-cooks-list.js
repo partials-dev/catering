@@ -58,11 +58,10 @@ export default class SessionCooksList extends CookList {
       timeout: 2000
     };
 
-    window.setTimeout( () => {this.showingSnackbar = false;}, 2000);
     if (!this.showingSnackbar) {
       snackbarContainer.MaterialSnackbar.showSnackbar(data);
+      this.showingSnackbar = true
+      window.setTimeout( () => {this.showingSnackbar = false;}, 2000);
     }
-    this.showingSnackbar = true
   }
 }
-

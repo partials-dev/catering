@@ -37,9 +37,9 @@ body {
 }
 
 #logo {
-  background-image: url("fancy-p3.png");
+  background-image: url("wave-circle.png");
   height: 40px;
-  width: 30px;
+  width: 40px;
   background-size: contain;
   background-repeat: no-repeat;
   margin-right: 10px;
