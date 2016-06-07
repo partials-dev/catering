@@ -25,6 +25,7 @@ export default class SessionCooksList extends CookList {
         this.ensureIndexExists(rehearsals.length - 1)
       }
     })
+    this.showingSnackbar = false
   }
 
   readCooks () {
@@ -40,12 +41,28 @@ export default class SessionCooksList extends CookList {
     }
     return cooks;
   }
+
   writeCooks (cooks) {
     if (Meteor.user()) {
       return super.writeCooks(cooks);
     } else {
       Session.set('cooks', cooks); 
+      this.warnChangesNotSaved();
     }
+  }
+
+  warnChangesNotSaved () {
+    var snackbarContainer = document.querySelector('#catering-snackbar'); 
+    var data = {
+      message: "You're not logged in. Changes won't be saved to the server.",
+      timeout: 2000
+    };
+
+    window.setTimeout( () => {this.showingSnackbar = false;}, 2000);
+    if (!this.showingSnackbar) {
+      snackbarContainer.MaterialSnackbar.showSnackbar(data);
+    }
+    this.showingSnackbar = true
   }
 }
 
