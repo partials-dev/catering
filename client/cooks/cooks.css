@@ -8,6 +8,10 @@
   display: inline-block;
 }
 
+#catering .nocook {
+  background-image: URL('no-cook.jpg') !important;
+}
+
 .catering-swap {
   right: 10px;
   bottom: 10px;

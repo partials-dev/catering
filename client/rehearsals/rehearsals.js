@@ -46,29 +46,41 @@ Template.cateredRehearsal.helpers({
     }
   },
   firstRowCooks: function() {
-   return cooks().slice(0,2); 
+   return cooks().slice(0,3); 
   },
   secondRowCooks: function() {
-    return cooks().slice(2);
+    return cooks().slice(3);
   },
   currentAction: function() {
     return Template.instance().currentAction.get();
   },
   repositionInsertButton: function() {
+    currentButton = $(`#insert-cook-${this.index}`)[0];
     if (Template.instance().currentAction.get() === "add") {
+      changeParentDiv($(currentButton), $(`#current-action-container-${this.index}`)[0]);
       return "reposition-insert raised";
     } else {
+      changeParentDiv($(currentButton), $(`insert-button-container-${this.index}`)[0]);
       return "";
     }
   },
   repositionSetButton: function() {
+    currentButton = $(`#set-cook-${this.index}`)[0];
     if (Template.instance().currentAction.get() === "face") {
+      changeParentDiv($(currentButton), $(`#current-action-container-${this.index}`)[0]);
       return "reposition-set raised";
     } else {
-      return "";    
+      changeParentDiv($(currentButton), $(`set-button-container-${this.index}`)[0]);
+      return "";
     }
   }
 });
+
+var changeParentDiv = function (button, destination) {
+  window.setTimeout(function () {
+    button.appendTo(destination);
+  }, 500)
+}
 
 var previouslyChecked = null;
 Template.cateredRehearsal.events({
