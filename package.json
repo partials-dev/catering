@@ -4,6 +4,7 @@
   "description": "A small Meteor app for sharing cooking duties among friends or family.",
   "main": "n/a",
   "dependencies": {
+    "dialog-polyfill": "^0.4.3",
     "json-stringify-safe": "^5.0.1",
     "moment": "^2.13.0"
   },
