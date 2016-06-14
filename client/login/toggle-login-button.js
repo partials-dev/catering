@@ -1,4 +1,4 @@
-import dialogPolyfill from "dialog-polyfill";
+import dialogPolyfill from "../dialog-polyfill/dialog-polyfill";
 
 var showLoginModal = new ReactiveVar(false);
 Template.registerHelper('showLoginModal', function(){ return showLoginModal.get(); });
