@@ -1,5 +1,19 @@
 <template name="cateredRehearsal">
- 
+
+<div class="mdl-tooltip" for="insert-cook-{{index}}">
+  Insert Cook
+</div>
+<div class="mdl-tooltip" for="delete-cook-{{index}}">
+  Delete Cook
+</div>
+<div class="mdl-tooltip" for="set-cook-{{index}}">
+  Set Cook
+</div>
+
+<div class="mdl-tooltip" for="swap-button-{{index}}">
+  Swap Cooks
+</div>
+
 <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--middle square-card">
 
   <div class="mdl-card__title">
@@ -18,18 +32,12 @@
           <button id="swap-button-{{index}}" class="swap-button mdl-button mdl-js-button mdl-button--fab {{getSelectedClass index}}">
             <i class="material-icons">compare_arrows</i>
           </button>
-          <div class="mdl-tooltip" for="swap-button-{{index}}">
-            Swap Cooks
-          </div>
         </div>
 
         <div class="action-cell">
           <button id="delete-cook-{{index}}" class="delete-cook-button mdl-button mdl-js-button mdl-button--fab">
             <i class="material-icons">delete</i>
           </button>
-          <div class="mdl-tooltip" for="delete-cook-{{index}}">
-            Delete Cook
-          </div>
         </div>
       </div>
 
@@ -38,18 +46,12 @@
           <button id="set-cook-{{index}}" data-index="{{index}}" data-name="{{name}}" class="{{repositionSetButton}} repositionable uses-face-selector set-cook-button mdl-button mdl-js-button mdl-button--fab">
             <i class="material-icons">face</i>
           </button>
-          <div class="mdl-tooltip" for="set-cook-{{index}}">
-            Set Cook
-          </div>
         </div>
 
         <div id="insert-cook-container-{{index}}" class="action-cell">
           <button id="insert-cook-{{index}}" data-index="{{index}}" data-name="{{name}}" class="{{repositionInsertButton}} repositionable uses-face-selector insert-cook-button mdl-button mdl-js-button mdl-button--fab">
             <i class="material-icons">add</i>
           </button>
-          <div class="mdl-tooltip" for="insert-cook-{{index}}">
-            Insert Cook
-          </div>
         </div>
 
       </div>    
