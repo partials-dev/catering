@@ -45,8 +45,17 @@
     box-shadow: 0 6px 8px 0px rgba(0,0,0,0.2),0 3px 1px -2px rgba(0,0,0,0.2),0 1px 5px 0 rgba(0,0,0,0.2);
 }
 .actions {
-  min-height: 175px;
+  height: 170px;
   transition: 0.5s ease;
+}
+
+.face-selector.actions {
+  overflow-y: scroll;
+  height: 177px;
+}
+
+#catering .mdl-card__actions.mdl-card--border {
+  border-top: 0;
 }
 
 .button-row {
@@ -72,7 +81,7 @@
   visibility: hidden;
 }
 .up {
-  transform: translateY(-175px);
+  transform: translateY(-180px);
 }
 
 .uncatered-box {

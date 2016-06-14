@@ -1,3 +1,4 @@
+import stringify from 'json-stringify-safe'
 import CookList from '../session-cooks-list'
 //import CookList from '../../lib/cooks-list'
 import {CANNONICAL_COOKS} from '../../lib/cooks-list'
@@ -46,40 +47,50 @@ Template.cateredRehearsal.helpers({
     }
   },
   firstRowCooks: function() {
-   return cooks().slice(0,3); 
+   return cooks().slice(0, 2); 
   },
   secondRowCooks: function() {
-    return cooks().slice(3);
+    return cooks().slice(2, 5);
+  },
+  thirdRowCooks: function() {
+    return cooks().slice(5);
   },
   currentAction: function() {
     return Template.instance().currentAction.get();
   },
   repositionInsertButton: function() {
-    currentButton = $(`#insert-cook-${this.index}`)[0];
+    var currentButton = $(`#insert-cook-${this.index}`)[0];
+    var insertButtonDiv = $(`#insert-cook-container-${this.index}`)[0];
+    var faceSelectorDiv = $(`#current-action-container-${this.index}`)[0];
+
     if (Template.instance().currentAction.get() === "add") {
-      changeParentDiv($(currentButton), $(`#current-action-container-${this.index}`)[0]);
-      return "reposition-insert raised";
+      changeParentDiv($(currentButton), $(faceSelectorDiv));
+      //return "reposition-insert raised";
     } else {
-      changeParentDiv($(currentButton), $(`insert-button-container-${this.index}`)[0]);
-      return "";
+      changeParentDiv($(currentButton), $(insertButtonDiv));
+      //return "";
     }
   },
+
   repositionSetButton: function() {
-    currentButton = $(`#set-cook-${this.index}`)[0];
+    var currentButton = $(`#set-cook-${this.index}`)[0];
+    var setButtonDiv = $(`#set-button-container-${this.index}`)[0];
+    var faceSelectorDiv = $(`#current-action-container-${this.index}`)[0];
+    
     if (Template.instance().currentAction.get() === "face") {
-      changeParentDiv($(currentButton), $(`#current-action-container-${this.index}`)[0]);
-      return "reposition-set raised";
+      changeParentDiv($(currentButton), $(faceSelectorDiv));
+      //return "reposition-set raised";
     } else {
-      changeParentDiv($(currentButton), $(`set-button-container-${this.index}`)[0]);
-      return "";
+      changeParentDiv($(currentButton), $(setButtonDiv));
+      //return "";
     }
   }
 });
 
 var changeParentDiv = function (button, destination) {
   window.setTimeout(function () {
-    button.appendTo(destination);
-  }, 500)
+    button.prependTo(destination);
+  }, 0)
 }
 
 var previouslyChecked = null;

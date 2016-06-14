@@ -18,12 +18,18 @@
           <button id="swap-button-{{index}}" class="swap-button mdl-button mdl-js-button mdl-button--fab {{getSelectedClass index}}">
             <i class="material-icons">compare_arrows</i>
           </button>
+          <div class="mdl-tooltip" for="swap-button-{{index}}">
+            Swap Cooks
+          </div>
         </div>
 
         <div class="action-cell">
           <button id="delete-cook-{{index}}" class="delete-cook-button mdl-button mdl-js-button mdl-button--fab">
             <i class="material-icons">delete</i>
           </button>
+          <div class="mdl-tooltip" for="delete-cook-{{index}}">
+            Delete Cook
+          </div>
         </div>
       </div>
 
@@ -32,12 +38,18 @@
           <button id="set-cook-{{index}}" data-index="{{index}}" data-name="{{name}}" class="{{repositionSetButton}} repositionable uses-face-selector set-cook-button mdl-button mdl-js-button mdl-button--fab">
             <i class="material-icons">face</i>
           </button>
+          <div class="mdl-tooltip" for="set-cook-{{index}}">
+            Set Cook
+          </div>
         </div>
 
-        <div id="insert-button-container-{{index}}" class="action-cell">
+        <div id="insert-cook-container-{{index}}" class="action-cell">
           <button id="insert-cook-{{index}}" data-index="{{index}}" data-name="{{name}}" class="{{repositionInsertButton}} repositionable uses-face-selector insert-cook-button mdl-button mdl-js-button mdl-button--fab">
             <i class="material-icons">add</i>
           </button>
+          <div class="mdl-tooltip" for="insert-cook-{{index}}">
+            Insert Cook
+          </div>
         </div>
 
       </div>    
@@ -48,12 +60,8 @@
     <div class="face-selector actions {{up}}">
       <div class="button-row">
         <div id="current-action-container-{{index}}" class="face-cell">
-          <button class="hide mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-cell mdl-cell--4-col">
-            <i class="material-icons">{{currentAction}}</i>
-          </button>
+          <!-- Holds the current action button after click -->
         </div>
-      </div>
-      <div class="button-row">
         {{#each firstRowCooks}}
           <div class="face-cell">
             {{> cook}}
@@ -62,9 +70,16 @@
       </div>
       <div class="button-row">
         {{#each secondRowCooks}}
-          <div class="face-cell">
-            {{> cook}}
-          </div>
+        <div class="face-cell">
+          {{> cook}}
+        </div>
+        {{/each}}
+      </div>
+      <div class="button-row">
+        {{#each thirdRowCooks}}
+        <div class="face-cell">
+          {{> cook}}
+        </div>
         {{/each}}
       </div>
     </div>
