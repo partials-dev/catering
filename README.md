@@ -7,3 +7,5 @@ A simple utility for the band to use because we CANNOT remember whose turn it is
  - Lazily loads and assigns members to cook on those days
  - Functionality to set, add, delete, and swap cooks around
  - Fancy material interface!
+ - Authentication: Doesn't mess with the database when logged out
+ - set uncatered rehersals by adding 'uncatered' to the description of the calendar event.
