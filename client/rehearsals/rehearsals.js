@@ -88,9 +88,7 @@ Template.cateredRehearsal.helpers({
 });
 
 var changeParentDiv = function (button, destination) {
-  window.setTimeout(function () {
-    button.prependTo(destination);
-  }, 0)
+  button.prependTo(destination);
 }
 
 var previouslyChecked = null;

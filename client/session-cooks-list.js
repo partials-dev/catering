@@ -35,9 +35,12 @@ export default class SessionCooksList extends CookList {
     } else {
       var cooks = Session.get('cooks');
       if (!cooks) {
-        Session.set('cooks', CANNONICAL_COOKS)
-        cooks = Session.get('cooks')
+        cooks = super.readCooks();
       }
+      //if (!cooks) {
+        //Session.set('cooks', CANNONICAL_COOKS)
+        //cooks = Session.get('cooks')
+      //}
     }
     return cooks;
   }
