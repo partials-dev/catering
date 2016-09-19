@@ -60,11 +60,13 @@ function refreshRehearsals() {
     results.items.forEach(function(rehearsal) {
       const isPastRehearsal = moment(rehearsal.start.dateTime).isBefore(now);
       const humanReadableStartTime = moment(rehearsal.start.dateTime).format('LLL');
+      rehearsal.description = rehearsal.description || "";
+      const catered = rehearsal.description.indexOf("uncatered") < 0;
       console.log(`Got event startin at ${humanReadableStartTime}`);
       if (isPastRehearsal) {
         pastRehearsals++;
         cooks.cooked();
-      } else {
+      } else if (catered) {
         Rehearsals.insert(rehearsal);
         if(Rehearsals.find().count() > cooks.count()) {
           cooks.generateNextCook()
