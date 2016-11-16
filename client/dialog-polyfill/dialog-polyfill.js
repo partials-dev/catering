@@ -1,3 +1,5 @@
+console.log('Got dialog polyfill');
+
 (function() {
 
   var supportCustomEvent = window.CustomEvent;
