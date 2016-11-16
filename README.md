@@ -9,3 +9,7 @@ A simple utility for the band to use because we CANNOT remember whose turn it is
  - Fancy material interface!
  - Authentication: Doesn't mess with the database when logged out
  - set uncatered rehersals by adding 'uncatered' to the description of the calendar event.
+
+ ## Deployment
+
+ Build with `meteor build ./.bin/ --architecture os.linux.x86_64`
