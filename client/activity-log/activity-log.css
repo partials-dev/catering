@@ -1,0 +1,29 @@
+#catering .activity-log-modal {
+  width: 400px;
+}
+
+#catering .activity-log-wrapper {
+}
+
+#catering .activity-log-thead {
+  
+  display: block;
+}
+#catering .activity-table-title {
+  font-size: x-large;
+}
+
+#catering .activity-log-what-cell {
+  width: 250px;
+}
+
+#catering .activity-log-tbody {
+  display: block;
+  overflow-y: scroll;
+  max-height: 200px;
+  margin-top: 15px;
+}
+
+.close-activity-log-modal {
+  float:right;
+}

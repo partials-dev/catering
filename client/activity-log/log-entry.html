@@ -1,0 +1,9 @@
+<template name="logEntry">
+  <tr>
+    <td class="mdl-data-table__cell--non-numeric">
+      <!--{{face}} -->
+      {{generateActionText type name index }}
+    </td>
+    <td>{{getTime createdAt }}</td>
+  </tr>
+</template>

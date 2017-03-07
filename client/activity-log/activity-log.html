@@ -1,0 +1,39 @@
+<template name="activityLog">
+  <dialog class="activity-log-modal mdl-dialog">
+    <div class='close-activity-log-modal'> 
+      <button class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">clear</i>
+      </button>
+    </div>
+    <div class='mdl-dialog__title'>
+      Recent Activity
+    </div>
+    <div class='mdl-dialog__content'>
+      <div class='activity-log-wrapper'>
+        <table class="mdl-data-table mdl-js-data-table">
+          <thead class='activity-log-thead'>
+            <tr>
+              <th class="activity-table-title mdl-data-table__cell--non-numeric activity-log-what-cell">What</th>
+              <th class="activity-table-title mdl-data-table__cell--non-numeric">When</th>
+            </tr>
+          </thead>
+          <tbody class='activity-log-tbody'>
+            {{#if logEntries.count}}
+              {{#each logEntries}}
+                {{> logEntry}}
+              {{/each}}
+            {{else}}
+              <p>There's nothing here.</p>
+            {{/if}}
+          </tbody>
+        </table>
+        <br>
+        <button class='undo-action-button mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab'>
+          <i class="material-icons">undo</i>
+        </button>
+      </div>
+      <br>
+      <p> * Cooklist is 0-indexed. </p>
+    </div>
+  </dialog>
+</template>
