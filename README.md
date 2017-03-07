@@ -2,6 +2,9 @@
 
 A simple utility for the band to use because we CANNOT remember whose turn it is to cook for rehersal.
 
+## What's new:
+ - Activity log with undo function!
+
 ## Features:
  - Pulls events from a google calendar
  - Lazily loads and assigns members to cook on those days
