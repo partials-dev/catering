@@ -1,5 +1,6 @@
 import stringify from 'json-stringify-safe'
 import CookList from '../session-cooks-list'
+import Actions from '../../lib/collections/actions'
 //import CookList from '../../lib/cooks-list'
 import {CANNONICAL_COOKS} from '../../lib/cooks-list'
 
@@ -47,7 +48,7 @@ Template.cateredRehearsal.helpers({
     }
   },
   firstRowCooks: function() {
-   return cooks().slice(0, 2); 
+   return cooks().slice(0, 2);
   },
   secondRowCooks: function() {
     return cooks().slice(2, 5);
@@ -76,7 +77,7 @@ Template.cateredRehearsal.helpers({
     var currentButton = $(`#set-cook-${this.index}`)[0];
     var setButtonDiv = $(`#set-button-container-${this.index}`)[0];
     var faceSelectorDiv = $(`#current-action-container-${this.index}`)[0];
-    
+
     if (Template.instance().currentAction.get() === "face") {
       changeParentDiv($(currentButton), $(faceSelectorDiv));
       //return "reposition-set raised";
@@ -91,6 +92,28 @@ var changeParentDiv = function (button, destination) {
   button.prependTo(destination);
 }
 
+
+var showingSnackbar = false;
+function snackbarMessage (label) {
+  var snackbarContainer = document.querySelector('#catering-snackbar');
+
+  if (!this.showingSnackbar) {
+    lastAction = Actions.find().fetch().slice(-1)[0];
+    var data = {
+      message: label,
+      timeout: 5000,
+      // Need to programatically kill the snackbar on press OR figure out a better way to pass the previous action into undo.
+      /*actionHandler: () => {
+        cookList.undoAction(lastAction);
+      },
+      actionText: "undo" */
+    };
+    snackbarContainer.MaterialSnackbar.showSnackbar(data);
+    this.showingSnackbar = true;
+    window.setTimeout( () => {this.showingSnackbar = false;}, data.timeout);
+  }
+}
+
 var previouslyChecked = null;
 Template.cateredRehearsal.events({
   "click .swap-button": function(event, template) {
@@ -98,6 +121,9 @@ Template.cateredRehearsal.events({
       Session.set("swap-button-selected-" + previouslyChecked.index, false)
       cookList.swap(this.index, previouslyChecked.index);
       previouslyChecked = null;
+
+      snackbarMessage("Swapped.");
+
     } else {
       previouslyChecked = this;
       Session.set("swap-button-selected-" + this.index, true)
@@ -105,19 +131,25 @@ Template.cateredRehearsal.events({
   },
   "click .delete-cook-button": function(event, template) {
     cookList.deleteAt(this.index);
+
+    snackbarMessage("Deleted.");
   },
   "click .insert-cook-menu-item": function(event, template) {
-    var data = $(event.currentTarget).data(); 
+    var data = $(event.currentTarget).data();
     var index = data.index;
     var name = data.name;
     cookList.insertAt(index, name);
+
+    snackbarMessage("Inserted.");
   },
   "click .set-cook-button": function(event, template) {
     template.currentAction.set("face");
     template.onSelectCook = function(name) {
-      var data = $(event.currentTarget).data(); 
+      var data = $(event.currentTarget).data();
       var index = data.index;
       cookList.setAt(index, name);
+
+      snackbarMessage("Set.");
     };
   },
   "click .uses-face-selector": function(event, template) {
@@ -134,13 +166,15 @@ Template.cateredRehearsal.events({
   "click .insert-cook-button": function(event, template) {
     template.currentAction.set("add");
     template.onSelectCook = function(name) {
-      var data = $(event.currentTarget).data(); 
+      var data = $(event.currentTarget).data();
       var index = data.index;
       cookList.insertAt(index, name);
+
+      snackbarMessage("Inserted.");
     };
   },
   "click .face-selector .user": function(event, template) {
-    var data = $(event.currentTarget).data(); 
+    var data = $(event.currentTarget).data();
     template.onSelectCook(data.name);
   }
 });

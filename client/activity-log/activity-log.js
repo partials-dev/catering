@@ -20,36 +20,6 @@ function snackbarMessage (data) {
   }
 }
 
-function undoAction (action) {
-  if (action){
-    switch (action.type) {
-      case 'cooked':
-        cookList.setAt(0, action.name, false, true);
-        break;
-      case 'set':
-        cookList.setAt(action.index, action.previousCook, false, true);
-        break;
-      case 'delete':
-        cookList.insertAt(action.index, action.name, true);
-        break;
-      case 'insert':
-        cookList.deleteAt(action.index, true);
-        break;
-      case 'swap':
-        cookList.swap(action.index[0], action.index[1], true);
-        break;
-    }
-    console.log(`${capitalize(action.type)} undone.`);
-    Actions.remove(action._id);
-
-    var snackbarData = { message: `${capitalize(action.type)} undone.`, timeout: 2000 };
-    snackbarMessage(snackbarData);
-
-  } else {
-    var snackbarData = { message: "No recent activity found.", timeout: 2000 };
-    snackbarMessage(snackbarData);
-  }
-}
 
 Template.activityLog.helpers({
   logEntries: function() {
@@ -97,7 +67,16 @@ Template.activityLog.events({
   },
   'click .undo-action-button': function(event, template) {
     lastAction = Actions.find().fetch().slice(-1)[0];
-    undoAction(lastAction);
+
+    if (lastAction){
+      cookList.undoAction(lastAction);
+      console.log(`${capitalize(lastAction.type)} undone.`);
+      var snackbarData = { message: `${capitalize(lastAction.type)} undone.`, timeout: 2000 };
+      snackbarMessage(snackbarData);
+    } else {
+      var snackbarData = { message: "No recent activity found.", timeout: 2000 };
+      snackbarMessage(snackbarData);
+    }
   }
 })
 
