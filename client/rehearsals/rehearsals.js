@@ -93,20 +93,24 @@ var changeParentDiv = function (button, destination) {
 }
 
 
-var showingSnackbar = false;
+var showingSnackbar = false; // prevent queuing multiple
+var actionUndone = false; // So you can't mash the undo button on the snackbar and mess stuff up
 function snackbarMessage (label) {
   var snackbarContainer = document.querySelector('#catering-snackbar');
-
+  actionUndone = false; // Reset for last action clicked
   if (!this.showingSnackbar) {
-    lastAction = Actions.find().fetch().slice(-1)[0];
+    var lastAction = Actions.find().fetch().slice(-1)[0];
     var data = {
       message: label,
       timeout: 5000,
-      // Need to programatically kill the snackbar on press OR figure out a better way to pass the previous action into undo.
-      /*actionHandler: () => {
-        cookList.undoAction(lastAction);
+      // Find a way to kill the snackbar when the action button is pressed.
+      actionHandler: () => {
+        if (!actionUndone){
+          cookList.undoAction(lastAction);
+          actionUndone = true; // prevent multiple presses
+        }
       },
-      actionText: "undo" */
+      actionText: "undo"
     };
     snackbarContainer.MaterialSnackbar.showSnackbar(data);
     this.showingSnackbar = true;
