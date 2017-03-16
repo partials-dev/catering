@@ -93,30 +93,54 @@ var changeParentDiv = function (button, destination) {
 }
 
 
-var showingSnackbar = false; // prevent queuing multiple
-var actionUndone = false; // So you can't mash the undo button on the snackbar and mess stuff up
+
 function snackbarMessage (label) {
   var snackbarContainer = document.querySelector('#catering-snackbar');
-  actionUndone = false; // Reset for last action clicked
+  var lastAction = Actions.find().fetch().slice(-1)[0];
+  var data = {
+    message: label,
+    timeout: 2000,
+  };
+  snackbarContainer.MaterialSnackbar.showSnackbar(data);
+}
+
+/* Off the table until MDL implements a proper snackbar killing method
+
+var showingSnackbar = false; // prevent queuing multiple
+function snackbarMessage (label) {
+  var snackbarContainer = document.querySelector('#catering-snackbar');
+
   if (!this.showingSnackbar) {
     var lastAction = Actions.find().fetch().slice(-1)[0];
     var data = {
       message: label,
       timeout: 5000,
-      // Find a way to kill the snackbar when the action button is pressed.
       actionHandler: () => {
-        if (!actionUndone){
-          cookList.undoAction(lastAction);
-          actionUndone = true; // prevent multiple presses
-        }
+          cookList.undoAction(lastAction
+          // snackbarContainer.MaterialSnackbar.hideSnackbar(); // not in the current release yet
+          if (snackbarContainer.MaterialSnackbar.active) {
+            snackbarContainer.MaterialSnackbar.cleanup_(); // sorta broken
+          }
       },
       actionText: "undo"
     };
+
     snackbarContainer.MaterialSnackbar.showSnackbar(data);
     this.showingSnackbar = true;
     window.setTimeout( () => {this.showingSnackbar = false;}, data.timeout);
+
+  } else {
+    // if there's already a snackbar, kill it and launch a new one
+    // snackbarContainer.classList.remove("mdl-snackbar--active"); // bad
+    // snackbarContainer.MaterialSnackbar.hideSnackbar(); // Not in the current release yet
+    if (snackbarContainer.MaterialSnackbar.active) {
+      snackbarContainer.MaterialSnackbar.cleanup_(); // sorta broken
+    }
+    this.showingSnackbar = false;
+    snackbarMessage(label);
   }
 }
+*/
 
 var previouslyChecked = null;
 Template.cateredRehearsal.events({
