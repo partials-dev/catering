@@ -16,19 +16,32 @@ function snackbarMessage (data) {
   if (!this.showingSnackbar) {
     snackbarContainer.MaterialSnackbar.showSnackbar(data);
     this.showingSnackbar = true
+    // TODO: No need to wrap the function body in curly braces if it's just
+    // a single expression. But beware this difference:
+    //
+    // No return value, so returns undefined
+    // const returnsUndefined = () => { 1 + 1 }
+    //
+    // Returns 2
+    // const doTheOtherThing = () => 1 + 1
+    // http://es6-features.org/#ExpressionBodies
+    // TODO: Make argument spacing consistent. Currently there's a space after the
+    // opening paren in setTimeout(), but not before the closing paren.
     window.setTimeout( () => {this.showingSnackbar = false;}, data.timeout);
   }
 }
 
-
 Template.activityLog.helpers({
   logEntries: function() {
+    // TODO: Make argument spacing consistent. Currently there's a space after the
+    // opening paren in find(), but not before the closing paren.
     return Actions.find( {}, {sort: { createdAt : -1 } });
   }
 })
 
 Template.logEntry.helpers({
   getTime: function(createdAt) {
+    // TODO: date is currently a global variable.
     date = moment(createdAt).calendar(moment(), {
       sameDay: '[Today]',
       nextDay: '[Tomorrow]',
@@ -66,6 +79,7 @@ Template.activityLog.events({
     dialog.close();
   },
   'click .undo-action-button': function(event, template) {
+    // TODO: lastAction is currently a global variable.
     lastAction = Actions.find().fetch().slice(-1)[0];
 
     if (lastAction){

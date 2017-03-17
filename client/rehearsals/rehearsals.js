@@ -12,6 +12,11 @@ Template.cateredRehearsal.onCreated(function() {
   this.currentAction = new ReactiveVar();
 });
 
+// TODO: doesn't need to be a function. Just do var cooks = CANNONICAL_COOKS.map(...
+// TODO: there are multiple variables named `cooks` in this file (e.g. lines
+// 19 and 27), and they refer to slightly different things.
+// Rename variables so there's no ambiguity and no variable shadowing.
+// https://en.wikipedia.org/wiki/Variable_shadowing
 var cooks = function() {
   return CANNONICAL_COOKS.map(function(cook) {
     return {name: cook};
@@ -19,10 +24,16 @@ var cooks = function() {
 }
 
 Template.cateredRehearsal.helpers({
+  // TODO: Use method properties instead of `cookData: function () {`
+  // http://es6-features.org/#MethodProperties
   cookData: function() {
     var cooks = cookList.readCooks();
     var index = this.index;
     var name = cooks[index];
+    // TODO: no need to use `this.index` since you already have a variable named
+    // `index`.
+    // TODO: Use ES6 property shorthand to remove the { name: name } redundancy
+    // http://es6-features.org/#PropertyShorthand
     var cookData = {name: name, index: this.index, className: 'card-bubble'};
     return cookData;
   },
@@ -36,6 +47,9 @@ Template.cateredRehearsal.helpers({
   cannonicalCooks: function() {
    var cooks = CANNONICAL_COOKS;
    var index = this.index;
+   // TODO: Dry this up. It looks very similar to the cooks variable declaration
+   // at the top of the file.
+   // https://en.wikipedia.org/wiki/Don't_repeat_yourself
    return cooks.map(function(name){
      return {name:name, index:index};
    })
@@ -60,6 +74,8 @@ Template.cateredRehearsal.helpers({
     return Template.instance().currentAction.get();
   },
   repositionInsertButton: function() {
+    // TODO: using jQuery in a Meteor app has a code smell to it.
+    // Try refactoring to use the template system.
     var currentButton = $(`#insert-cook-${this.index}`)[0];
     var insertButtonDiv = $(`#insert-cook-container-${this.index}`)[0];
     var faceSelectorDiv = $(`#current-action-container-${this.index}`)[0];
@@ -74,6 +90,7 @@ Template.cateredRehearsal.helpers({
   },
 
   repositionSetButton: function() {
+    // TODO: see above comment about jQuery
     var currentButton = $(`#set-cook-${this.index}`)[0];
     var setButtonDiv = $(`#set-button-container-${this.index}`)[0];
     var faceSelectorDiv = $(`#current-action-container-${this.index}`)[0];
@@ -88,14 +105,14 @@ Template.cateredRehearsal.helpers({
   }
 });
 
+// TODO: see above comment about jQuery
 var changeParentDiv = function (button, destination) {
   button.prependTo(destination);
 }
 
-
-
 function snackbarMessage (label) {
   var snackbarContainer = document.querySelector('#catering-snackbar');
+  // TODO: delete unused lastAction variable
   var lastAction = Actions.find().fetch().slice(-1)[0];
   var data = {
     message: label,
@@ -103,6 +120,8 @@ function snackbarMessage (label) {
   };
   snackbarContainer.MaterialSnackbar.showSnackbar(data);
 }
+
+// TODO: Do we need to keep this code around?
 
 /* Off the table until MDL implements a proper snackbar killing method
 
@@ -146,12 +165,11 @@ var previouslyChecked = null;
 Template.cateredRehearsal.events({
   "click .swap-button": function(event, template) {
     if (previouslyChecked) {
-      Session.set("swap-button-selected-" + previouslyChecked.index, false)
+      Session.set("swap-button-selected-" + previouslyChecked.index, false);
       cookList.swap(this.index, previouslyChecked.index);
       previouslyChecked = null;
 
       snackbarMessage("Swapped.");
-
     } else {
       previouslyChecked = this;
       Session.set("swap-button-selected-" + this.index, true)
@@ -163,6 +181,8 @@ Template.cateredRehearsal.events({
     snackbarMessage("Deleted.");
   },
   "click .insert-cook-menu-item": function(event, template) {
+    // TODO: Use ES6 destructuring assignment to get `index` and `name`
+    // http://es6-features.org/#ObjectMatchingShorthandNotation
     var data = $(event.currentTarget).data();
     var index = data.index;
     var name = data.name;
@@ -173,6 +193,8 @@ Template.cateredRehearsal.events({
   "click .set-cook-button": function(event, template) {
     template.currentAction.set("face");
     template.onSelectCook = function(name) {
+      // TODO: Use ES6 destructuring assignment to get `index`
+      // http://es6-features.org/#ObjectMatchingShorthandNotation
       var data = $(event.currentTarget).data();
       var index = data.index;
       cookList.setAt(index, name);
