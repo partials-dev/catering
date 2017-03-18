@@ -1,7 +1,6 @@
 import stringify from 'json-stringify-safe'
 import CookList from '../session-cooks-list'
 import Actions from '../../lib/collections/actions'
-//import CookList from '../../lib/cooks-list'
 import {CANNONICAL_COOKS} from '../../lib/cooks-list'
 
 const cookList = new CookList();
@@ -12,70 +11,49 @@ Template.cateredRehearsal.onCreated(function() {
   this.currentAction = new ReactiveVar();
 });
 
-// TODO: doesn't need to be a function. Just do var cooks = CANNONICAL_COOKS.map(...
-// TODO: there are multiple variables named `cooks` in this file (e.g. lines
-// 19 and 27), and they refer to slightly different things.
-// Rename variables so there's no ambiguity and no variable shadowing.
-// https://en.wikipedia.org/wiki/Variable_shadowing
-var cooks = function() {
-  return CANNONICAL_COOKS.map(function(cook) {
-    return {name: cook};
-  });
-}
+var cannonicalCookOrder = CANNONICAL_COOKS.map(
+  function(cook) { return {name: cook}; }
+);
 
 Template.cateredRehearsal.helpers({
-  // TODO: Use method properties instead of `cookData: function () {`
-  // http://es6-features.org/#MethodProperties
-  cookData: function() {
-    var cooks = cookList.readCooks();
+  cookData () {
+    var currentCookList = cookList.readCooks();
     var index = this.index;
-    var name = cooks[index];
-    // TODO: no need to use `this.index` since you already have a variable named
-    // `index`.
-    // TODO: Use ES6 property shorthand to remove the { name: name } redundancy
-    // http://es6-features.org/#PropertyShorthand
-    var cookData = {name: name, index: this.index, className: 'card-bubble'};
+    var name = currentCookList[index];
+    var cookData = {name, index, className: 'card-bubble'};
     return cookData;
   },
-  getSelectedClass: function(index) {
+  getSelectedClass (index) {
     if (Session.get("swap-button-selected-" + index)) {
       return "mdl-button--colored raised";
     } else {
       return "";
     }
   },
-  cannonicalCooks: function() {
-   var cooks = CANNONICAL_COOKS;
-   var index = this.index;
-   // TODO: Dry this up. It looks very similar to the cooks variable declaration
-   // at the top of the file.
-   // https://en.wikipedia.org/wiki/Don't_repeat_yourself
-   return cooks.map(function(name){
-     return {name:name, index:index};
-   })
-  },
-  up: function() {
+  up () {
     if(Template.instance().showFaceSelector.get()) {
       return 'up';
     } else {
       return '';
     }
   },
-  firstRowCooks: function() {
-   return cooks().slice(0, 2);
+  firstRowCooks () {
+   return cannonicalCookOrder.slice(0, 2);
   },
-  secondRowCooks: function() {
-    return cooks().slice(2, 5);
+  secondRowCooks () {
+    return cannonicalCookOrder.slice(2, 5);
   },
-  thirdRowCooks: function() {
-    return cooks().slice(5);
+  thirdRowCooks () {
+    return cannonicalCookOrder.slice(5);
   },
-  currentAction: function() {
+  currentAction () {
     return Template.instance().currentAction.get();
   },
-  repositionInsertButton: function() {
+  repositionInsertButton () {
     // TODO: using jQuery in a Meteor app has a code smell to it.
     // Try refactoring to use the template system.
+    // IAN: Sounds Great! This whole animation was a mess, though.
+    // I think if we don't find a functional solution within an hour, lets can it.
     var currentButton = $(`#insert-cook-${this.index}`)[0];
     var insertButtonDiv = $(`#insert-cook-container-${this.index}`)[0];
     var faceSelectorDiv = $(`#current-action-container-${this.index}`)[0];
@@ -89,7 +67,7 @@ Template.cateredRehearsal.helpers({
     }
   },
 
-  repositionSetButton: function() {
+  repositionSetButton () {
     // TODO: see above comment about jQuery
     var currentButton = $(`#set-cook-${this.index}`)[0];
     var setButtonDiv = $(`#set-button-container-${this.index}`)[0];
@@ -112,54 +90,12 @@ var changeParentDiv = function (button, destination) {
 
 function snackbarMessage (label) {
   var snackbarContainer = document.querySelector('#catering-snackbar');
-  // TODO: delete unused lastAction variable
-  var lastAction = Actions.find().fetch().slice(-1)[0];
   var data = {
     message: label,
     timeout: 2000,
   };
   snackbarContainer.MaterialSnackbar.showSnackbar(data);
 }
-
-// TODO: Do we need to keep this code around?
-
-/* Off the table until MDL implements a proper snackbar killing method
-
-var showingSnackbar = false; // prevent queuing multiple
-function snackbarMessage (label) {
-  var snackbarContainer = document.querySelector('#catering-snackbar');
-
-  if (!this.showingSnackbar) {
-    var lastAction = Actions.find().fetch().slice(-1)[0];
-    var data = {
-      message: label,
-      timeout: 5000,
-      actionHandler: () => {
-          cookList.undoAction(lastAction
-          // snackbarContainer.MaterialSnackbar.hideSnackbar(); // not in the current release yet
-          if (snackbarContainer.MaterialSnackbar.active) {
-            snackbarContainer.MaterialSnackbar.cleanup_(); // sorta broken
-          }
-      },
-      actionText: "undo"
-    };
-
-    snackbarContainer.MaterialSnackbar.showSnackbar(data);
-    this.showingSnackbar = true;
-    window.setTimeout( () => {this.showingSnackbar = false;}, data.timeout);
-
-  } else {
-    // if there's already a snackbar, kill it and launch a new one
-    // snackbarContainer.classList.remove("mdl-snackbar--active"); // bad
-    // snackbarContainer.MaterialSnackbar.hideSnackbar(); // Not in the current release yet
-    if (snackbarContainer.MaterialSnackbar.active) {
-      snackbarContainer.MaterialSnackbar.cleanup_(); // sorta broken
-    }
-    this.showingSnackbar = false;
-    snackbarMessage(label);
-  }
-}
-*/
 
 var previouslyChecked = null;
 Template.cateredRehearsal.events({
@@ -181,32 +117,20 @@ Template.cateredRehearsal.events({
     snackbarMessage("Deleted.");
   },
   "click .insert-cook-menu-item": function(event, template) {
-    // TODO: Use ES6 destructuring assignment to get `index` and `name`
-    // http://es6-features.org/#ObjectMatchingShorthandNotation
-    var data = $(event.currentTarget).data();
-    var index = data.index;
-    var name = data.name;
+    var {index, name} = $(event.currentTarget).data();
     cookList.insertAt(index, name);
-
     snackbarMessage("Inserted.");
   },
   "click .set-cook-button": function(event, template) {
     template.currentAction.set("face");
     template.onSelectCook = function(name) {
-      // TODO: Use ES6 destructuring assignment to get `index`
-      // http://es6-features.org/#ObjectMatchingShorthandNotation
-      var data = $(event.currentTarget).data();
-      var index = data.index;
+      var {index} = $(event.currentTarget).data();
       cookList.setAt(index, name);
-
       snackbarMessage("Set.");
     };
   },
   "click .uses-face-selector": function(event, template) {
     template.showFaceSelector.set(true);
-    //$target = $(event.currentTarget);
-    //$target.removeClass("mdl-button--fab");
-    //$target.addClass("mdl-button--raised");
   },
   "click .face-selector": function(event, template) {
     template.currentAction.set(null);

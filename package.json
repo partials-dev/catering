@@ -10,9 +10,11 @@
     "json-stringify-safe": "^5.0.1",
     "moment": "^2.13.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "standard": "*"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "standard"
   },
   "repository": {
     "type": "git",
