@@ -11,7 +11,11 @@
     "moment": "^2.13.0"
   },
   "devDependencies": {
-    "standard": "*"
+    "standard": {
+      "ignore": [
+        "/client/dialog-polyfill/"
+      ]
+    }
   },
   "scripts": {
     "test": "standard"

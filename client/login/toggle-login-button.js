@@ -1,30 +1,29 @@
-import dialogPolyfill from "../dialog-polyfill/dialog-polyfill";
+import dialogPolyfill from '../dialog-polyfill/dialog-polyfill'
 
-var showLoginModal = new ReactiveVar(false);
-Template.registerHelper('showLoginModal', function(){ return showLoginModal.get(); });
+var showLoginModal = new ReactiveVar(false)
+Template.registerHelper('showLoginModal', function () { return showLoginModal.get() })
 
 Template.toggleLoginButton.helpers({
-  buttonText: function() {
+  buttonText: function () {
     if (Meteor.user()) {
-      return 'Logout';
+      return 'Logout'
     } else {
-      return 'Login';
+      return 'Login'
     }
   }
 })
 
 Template.toggleLoginButton.events({
-  'click .toggle-login-button': function(event, template) {
-    var dialog = $('.login-modal')[0];
+  'click .toggle-login-button': function (event, template) {
+    var dialog = $('.login-modal')[0]
     if (!dialog.showModal) {
-      dialogPolyfill.registerDialog(dialog);
+      dialogPolyfill.registerDialog(dialog)
     }
 
     if (Meteor.user()) {
-      Meteor.logout(); 
+      Meteor.logout()
     } else {
-      dialog.showModal();
+      dialog.showModal()
     }
   }
 })
-
