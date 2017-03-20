@@ -1,12 +1,12 @@
 import {CANNONICAL_COOKS} from '../../lib/cooks-list'
 
 var addRule = function (rule) {
-  sheet = document.styleSheets[1]
+  var sheet = document.styleSheets[1]
   sheet.insertRule(rule, 0)
 }
 
 var generateUserStyle = function () {
-  cooks = CANNONICAL_COOKS
+  var cooks = CANNONICAL_COOKS
 
   for (var i = 0; i < cooks.length; i++) {
     var name = cooks[i]

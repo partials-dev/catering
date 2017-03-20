@@ -31,7 +31,7 @@ export default class SessionCooksList extends CookList {
     if (Meteor.user()) {
       cooks = super.readCooks()
     } else {
-      var cooks = Session.get('cooks')
+      cooks = Session.get('cooks')
       if (!cooks) {
         cooks = super.readCooks()
       }

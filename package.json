@@ -10,12 +10,19 @@
     "json-stringify-safe": "^5.0.1",
     "moment": "^2.13.0"
   },
-  "devDependencies": {
-    "standard": {
-      "ignore": [
-        "/client/dialog-polyfill/"
-      ]
+  "standard": {
+    "ignore": [
+      "/client/dialog-polyfill/"
+    ],
+    "globals": [
+      "AccountsTemplates"
+    ],
+    "env": {
+      "meteor": true
     }
+  },
+  "devDependencies": {
+    "standard": "*"
   },
   "scripts": {
     "test": "standard"

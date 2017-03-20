@@ -1,7 +1,7 @@
 import upcomingRehearsals from './upcoming-rehearsals'
 
 var allRehearsals = new ReactiveVar([])
-var cateredRehearsals = new ReactiveVar([])
+// var cateredRehearsals = new ReactiveVar([])
 
 Template.body.helpers({
   rehearsals: function () {
