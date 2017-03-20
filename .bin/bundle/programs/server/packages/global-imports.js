@@ -1,0 +1,39 @@
+/* Imports for global scope */
+
+MongoInternals = Package.mongo.MongoInternals;
+Mongo = Package.mongo.Mongo;
+Tracker = Package.tracker.Tracker;
+Deps = Package.tracker.Deps;
+ECMAScript = Package.ecmascript.ECMAScript;
+moment = Package['momentjs:moment'].moment;
+ReactiveVar = Package['reactive-var'].ReactiveVar;
+Accounts = Package['accounts-base'].Accounts;
+Meteor = Package.meteor.Meteor;
+global = Package.meteor.global;
+meteorEnv = Package.meteor.meteorEnv;
+WebApp = Package.webapp.WebApp;
+main = Package.webapp.main;
+WebAppInternals = Package.webapp.WebAppInternals;
+_ = Package.underscore._;
+DDP = Package['ddp-client'].DDP;
+DDPServer = Package['ddp-server'].DDPServer;
+LaunchScreen = Package['launch-screen'].LaunchScreen;
+Blaze = Package.ui.Blaze;
+UI = Package.ui.UI;
+Handlebars = Package.ui.Handlebars;
+Spacebars = Package.spacebars.Spacebars;
+meteorInstall = Package.modules.meteorInstall;
+Buffer = Package.modules.Buffer;
+process = Package.modules.process;
+Symbol = Package['ecmascript-runtime'].Symbol;
+Map = Package['ecmascript-runtime'].Map;
+Set = Package['ecmascript-runtime'].Set;
+meteorBabelHelpers = Package['babel-runtime'].meteorBabelHelpers;
+Promise = Package.promise.Promise;
+Async = Package['meteorhacks:async'].Async;
+_mdlGetAsset = Package['zodiase:mdl-assets']._mdlGetAsset;
+AccountsTemplates = Package['useraccounts:core'].AccountsTemplates;
+Autoupdate = Package.autoupdate.Autoupdate;
+HTML = Package.htmljs.HTML;
+T9n = Package['softwarerero:accounts-t9n'].T9n;
+

@@ -1,0 +1,272 @@
+{
+  "format": "web-program-pre1",
+  "manifest": [
+    {
+      "path": "39384355591f531faef0d40359f501ab75ab6d62.js",
+      "where": "client",
+      "type": "js",
+      "cacheable": true,
+      "url": "/39384355591f531faef0d40359f501ab75ab6d62.js?meteor_js_resource=true",
+      "size": 960586,
+      "hash": "39384355591f531faef0d40359f501ab75ab6d62"
+    },
+    {
+      "path": "fba656c93b7fdfe3b92a7258aea2c27c63adec50.css",
+      "where": "client",
+      "type": "css",
+      "cacheable": true,
+      "url": "/fba656c93b7fdfe3b92a7258aea2c27c63adec50.css?meteor_css_resource=true",
+      "size": 286659,
+      "hash": "fba656c93b7fdfe3b92a7258aea2c27c63adec50"
+    },
+    {
+      "path": "packages/zodiase_mdl-assets/src/images/buffer.svg",
+      "where": "client",
+      "type": "asset",
+      "cacheable": false,
+      "url": "/packages/zodiase_mdl-assets/src/images/buffer.svg",
+      "size": 425,
+      "hash": "167d764fb3cead098d0b7b6f14fe743a3ea3a6e1"
+    },
+    {
+      "path": "packages/zodiase_mdl-assets/src/images/tick-mask.svg",
+      "where": "client",
+      "type": "asset",
+      "cacheable": false,
+      "url": "/packages/zodiase_mdl-assets/src/images/tick-mask.svg",
+      "size": 1249,
+      "hash": "f66ebf3439f251e9c8feff13fd7be430bebcd878"
+    },
+    {
+      "path": "packages/zodiase_mdl-assets/src/images/tick.svg",
+      "where": "client",
+      "type": "asset",
+      "cacheable": false,
+      "url": "/packages/zodiase_mdl-assets/src/images/tick.svg",
+      "size": 648,
+      "hash": "a895d51c6a5afb27be7b2075e35cf6030712e5b3"
+    },
+    {
+      "path": "packages/zodiase_material-design-icons-fonts/iconfont/MaterialIcons-Regular.eot",
+      "where": "client",
+      "type": "asset",
+      "cacheable": false,
+      "url": "/packages/zodiase_material-design-icons-fonts/iconfont/MaterialIcons-Regular.eot",
+      "size": 143258,
+      "hash": "7f5d9a1386b879a1c81ffaa565ec13e5e5bc8ed7"
+    },
+    {
+      "path": "packages/zodiase_material-design-icons-fonts/iconfont/MaterialIcons-Regular.ijmap",
+      "where": "client",
+      "type": "asset",
+      "cacheable": false,
+      "url": "/packages/zodiase_material-design-icons-fonts/iconfont/MaterialIcons-Regular.ijmap",
+      "size": 28416,
+      "hash": "8b5ac29bdba7842ab236175effcca4634132a7aa"
+    },
+    {
+      "path": "packages/zodiase_material-design-icons-fonts/iconfont/MaterialIcons-Regular.svg",
+      "where": "client",
+      "type": "asset",
+      "cacheable": false,
+      "url": "/packages/zodiase_material-design-icons-fonts/iconfont/MaterialIcons-Regular.svg",
+      "size": 281658,
+      "hash": "21a46ab1154ad86e7ca82d0ef855ff4ec8d85d71"
+    },
+    {
+      "path": "packages/zodiase_material-design-icons-fonts/iconfont/MaterialIcons-Regular.ttf",
+      "where": "client",
+      "type": "asset",
+      "cacheable": false,
+      "url": "/packages/zodiase_material-design-icons-fonts/iconfont/MaterialIcons-Regular.ttf",
+      "size": 128180,
+      "hash": "5283eee35ea0ac29aff9e5b268c3cb9705cc1c1d"
+    },
+    {
+      "path": "packages/zodiase_material-design-icons-fonts/iconfont/MaterialIcons-Regular.woff",
+      "where": "client",
+      "type": "asset",
+      "cacheable": false,
+      "url": "/packages/zodiase_material-design-icons-fonts/iconfont/MaterialIcons-Regular.woff",
+      "size": 57620,
+      "hash": "abd4ec4cd5a485fe764161ce149b8de6a4161548"
+    },
+    {
+      "path": "packages/zodiase_material-design-icons-fonts/iconfont/MaterialIcons-Regular.woff2",
+      "where": "client",
+      "type": "asset",
+      "cacheable": false,
+      "url": "/packages/zodiase_material-design-icons-fonts/iconfont/MaterialIcons-Regular.woff2",
+      "size": 44300,
+      "hash": "95602e7b7323dae5b5b2a481ebfd29cc988442ec"
+    },
+    {
+      "path": "app/354243.svg",
+      "where": "client",
+      "type": "asset",
+      "cacheable": false,
+      "url": "/354243.svg",
+      "size": 1189,
+      "hash": "f56596641c637d8ba37ef693bdbb40763ada0be1"
+    },
+    {
+      "path": "app/adriana.jpg",
+      "where": "client",
+      "type": "asset",
+      "cacheable": false,
+      "url": "/adriana.jpg",
+      "size": 204599,
+      "hash": "1ef262574966664feb29a271063b4a5090888cc4"
+    },
+    {
+      "path": "app/alex.jpg",
+      "where": "client",
+      "type": "asset",
+      "cacheable": false,
+      "url": "/alex.jpg",
+      "size": 30482,
+      "hash": "39405e6a4fb46a7cdb9b861e98b949e1b0dedbeb"
+    },
+    {
+      "path": "app/blue-table.jpg",
+      "where": "client",
+      "type": "asset",
+      "cacheable": false,
+      "url": "/blue-table.jpg",
+      "size": 641405,
+      "hash": "aaacf6595065fdfbd9b47e17ecba35178f214af2"
+    },
+    {
+      "path": "app/cubes.jpg",
+      "where": "client",
+      "type": "asset",
+      "cacheable": false,
+      "url": "/cubes.jpg",
+      "size": 1132357,
+      "hash": "57b8b644b77a80c15b183f884c7727dcd8d788ed"
+    },
+    {
+      "path": "app/dane.jpg",
+      "where": "client",
+      "type": "asset",
+      "cacheable": false,
+      "url": "/dane.jpg",
+      "size": 19137,
+      "hash": "eea512be27cff5cc802481b6ac036d4e0e9dcd08"
+    },
+    {
+      "path": "app/fancy-p.png",
+      "where": "client",
+      "type": "asset",
+      "cacheable": false,
+      "url": "/fancy-p.png",
+      "size": 17665,
+      "hash": "3d68ec2198c1894aa3400ee2df55cd757ecf2599"
+    },
+    {
+      "path": "app/fancy-p2.png",
+      "where": "client",
+      "type": "asset",
+      "cacheable": false,
+      "url": "/fancy-p2.png",
+      "size": 243645,
+      "hash": "04551fa8294a22da092af3d8e4cb1cb4662c9e71"
+    },
+    {
+      "path": "app/fancy-p3.png",
+      "where": "client",
+      "type": "asset",
+      "cacheable": false,
+      "url": "/fancy-p3.png",
+      "size": 5915,
+      "hash": "5e7388fa1abbdcb79fe07629f10ddc494e66ac3b"
+    },
+    {
+      "path": "app/favicon.png",
+      "where": "client",
+      "type": "asset",
+      "cacheable": false,
+      "url": "/favicon.png",
+      "size": 940,
+      "hash": "4795ba22906925816b66240c04c779d4d6b84cbc"
+    },
+    {
+      "path": "app/fullband.jpg",
+      "where": "client",
+      "type": "asset",
+      "cacheable": false,
+      "url": "/fullband.jpg",
+      "size": 124299,
+      "hash": "20583bc15196511e9fd79accf018d685fe05176b"
+    },
+    {
+      "path": "app/ian.jpg",
+      "where": "client",
+      "type": "asset",
+      "cacheable": false,
+      "url": "/ian.jpg",
+      "size": 131406,
+      "hash": "b81db70ca4a798341d354425b5bb461e6ed9cc3c"
+    },
+    {
+      "path": "app/jeff.jpg",
+      "where": "client",
+      "type": "asset",
+      "cacheable": false,
+      "url": "/jeff.jpg",
+      "size": 19181,
+      "hash": "f851b3ea0a18992f78676c1bcc68ffab3d5b67c6"
+    },
+    {
+      "path": "app/no-cook.jpg",
+      "where": "client",
+      "type": "asset",
+      "cacheable": false,
+      "url": "/no-cook.jpg",
+      "size": 9402,
+      "hash": "7834014154492f5678bc64330f9c9a2d823a7295"
+    },
+    {
+      "path": "app/no-pic.jpg",
+      "where": "client",
+      "type": "asset",
+      "cacheable": false,
+      "url": "/no-pic.jpg",
+      "size": 3443,
+      "hash": "e6b4eb685a34b19b683a8d49f1f87a916e3d18ac"
+    },
+    {
+      "path": "app/thomas.jpg",
+      "where": "client",
+      "type": "asset",
+      "cacheable": false,
+      "url": "/thomas.jpg",
+      "size": 8977,
+      "hash": "eb3e15afe328d7ff8797a6d186b16c679545349c"
+    },
+    {
+      "path": "app/wave-circle.png",
+      "where": "client",
+      "type": "asset",
+      "cacheable": false,
+      "url": "/wave-circle.png",
+      "size": 8631,
+      "hash": "30041cd8916e1a16b363cd58afb5faf9ddbc651c"
+    },
+    {
+      "path": "app/wren-logo.png",
+      "where": "client",
+      "type": "asset",
+      "cacheable": false,
+      "url": "/wren-logo.png",
+      "size": 60744,
+      "hash": "881cab7717d65379b28b83a5e6d7d0977ca61dec"
+    },
+    {
+      "path": "head.html",
+      "where": "internal",
+      "type": "head",
+      "hash": "67a2c0ea2703342b4475190c4f8a34ae2b432d80"
+    }
+  ]
+}
