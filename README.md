@@ -1,6 +1,9 @@
 # Partials Cooking App
 
-A simple utility for the band to use because we CANNOT remember whose turn it is to cook for rehersal.
+> A simple utility for the band to use because we CANNOT remember whose turn it is to cook for rehersal.
+
+[![Standard - JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](http://standardjs.com/)
+
 
 ## What's new:
  - Activity log with undo function!
