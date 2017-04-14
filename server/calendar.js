@@ -9,13 +9,15 @@ const cooks = new CookList()
 
 const google = Meteor.npmRequire('googleapis')
 // const scopes = ['https://www.googleapis.com/auth/calendar']
-const CLIENT_ID = global.googleClientSecrets.web.client_id
-const CLIENT_SECRET = global.googleClientSecrets.web.client_secret
+const CLIENT_ID = process.env.GOOGLE_CLIENT_ID
+const CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET
+//const CLIENT_ID = global.googleClientSecrets.web.client_id
+// const CLIENT_SECRET = global.googleClientSecrets.web.client_secret
 
 const OAuth2 = google.auth.OAuth2
 const oauth2Client = new OAuth2(CLIENT_ID, CLIENT_SECRET, 'http://dev.partialcinema.com:3000/helper/auth')
 const accessToken = null
-const refreshToken = global.googleCalendarRefreshToken
+const refreshToken = process.env.GOOGLE_CALENDAR_REFRESH_TOKEN
 
 oauth2Client.setCredentials({
   access_token: accessToken,
