@@ -11,7 +11,7 @@ const google = Meteor.npmRequire('googleapis')
 // const scopes = ['https://www.googleapis.com/auth/calendar']
 const CLIENT_ID = process.env.GOOGLE_CLIENT_ID
 const CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET
-//const CLIENT_ID = global.googleClientSecrets.web.client_id
+// const CLIENT_ID = global.googleClientSecrets.web.client_id
 // const CLIENT_SECRET = global.googleClientSecrets.web.client_secret
 
 const OAuth2 = google.auth.OAuth2
@@ -59,8 +59,7 @@ function refreshRehearsals () {
     Rehearsals.remove({})
     const now = moment()
     results.items.forEach(function (rehearsal) {
-      const isPastRehearsal = moment(rehearsal.start.dateTime).isBefore(now)
-      // const humanReadableStartTime = moment(rehearsal.start.dateTime).format('LLL')
+      const isPastRehearsal = moment(rehearsal.end.dateTime).isBefore(now) // refreshes after rehearsal now
       rehearsal.description = rehearsal.description || ''
       const catered = rehearsal.description.indexOf('uncatered') < 0
       // console.log(`Got event startin at ${humanReadableStartTime}`)
